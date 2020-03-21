@@ -19,6 +19,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { UserService } from './shared/services/user.service';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { ProductService } from './shared/services/product.service';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     // services
     TaskService,
     UserService,
+    ProductService,
   ],
   bootstrap: [AppComponent]
 })
