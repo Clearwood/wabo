@@ -1,13 +1,13 @@
+import { Entity } from './entity';
+
 export enum StoreTypes {
     PHARMACY = 'pharmacy',
     SUPERMARKET = 'supermarket',
     DISCOUNTER = 'discounter',
-    WHOLEFOOD = "wholefood",
+    WHOLEFOOD = 'wholefood',
   }
 
-export interface Shop {
-    id?: string;
-
+export interface Shop extends Entity {
     streetName?: string;
     houseNumber?: string;
     city?: string;

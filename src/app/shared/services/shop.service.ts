@@ -15,23 +15,23 @@ export class ShopService {
   private dataApiEndpoint = environment.apiUrl + '/shop';
 
   private mockShop: Shop = {
-    id: "dolor",
+    id: 'dolor',
 
-    streetName: "Dogstreet",
-    houseNumber: "42",
-    city: "Berlin",
+    streetName: 'Dogstreet',
+    houseNumber: '42',
+    city: 'Berlin',
     postCode: 27182,
 
     latitude: 0.0,
     longitude: 0.0,
 
-    brand: "WallM",
-    name: "Clay",
+    brand: 'WallM',
+    name: 'Clay',
     type: StoreTypes.SUPERMARKET,
   };
 
   public getShopById(shopId: string): Observable<Shop> {
-    //return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
+    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
     return of(this.mockShop);
   }
 
