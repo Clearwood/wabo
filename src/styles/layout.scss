@@ -6,7 +6,13 @@
 }
 .content {
   padding: 8px;
+  height: 100%;
   button, div {
-    margin:  8px auto;
+    margin:  8px
   }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
