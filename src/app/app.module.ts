@@ -23,6 +23,7 @@ import { ProductService } from './shared/services/product.service';
 import { ShoppingItemService } from './shared/services/shoppingItem.service';
 import { ShopService } from './shared/services/shop.service';
 import { ShopXProductsService } from './shared/services/shopXProducts.service';
+import { ShopFeedbackService } from './shared/services/shop-feedback.service';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ShopXProductsService } from './shared/services/shopXProducts.service';
     ShoppingItemService,
     ShopService,
     ShopXProductsService,
+    ShopFeedbackService,
   ],
   bootstrap: [AppComponent]
 })
