@@ -28,6 +28,7 @@ import { JobDetailComponent } from './components/job/job-detail/job-detail.compo
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -48,10 +49,11 @@ import {AuthGuard} from './core/authentication/auth.guard';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
-      {path: 'profile', component: ProfileComponent},
-      {path: 'jobs', component: JobListComponent},
-      {path: 'jobs/detail/:id', component: JobDetailComponent},
+      {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
+      {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,
@@ -63,7 +65,8 @@ import {AuthGuard} from './core/authentication/auth.guard';
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     // services

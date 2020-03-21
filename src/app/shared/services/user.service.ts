@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from 'src/app/models/user';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 @Injectable()
@@ -20,10 +20,14 @@ export class UserService {
     lastName: 'Doe'
   };
 
-  private user: User;
+  private user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  public get currentUser(): User {
+  public get currentUserSubject(): BehaviorSubject<User> {
     return this.user;
+  }
+
+  public get currentUserValue(): User {
+    return this.user.value;
   }
 
   public getUserById(userId: string): Observable<User> {
@@ -33,7 +37,7 @@ export class UserService {
 
   public getUser(): Observable<User> {
     // return this.http.get<User>(this.dataApiEndpoint + '/' + userId);
-    return of(this.mockUser).pipe(tap(user => this.user = user));
+    return of(this.mockUser).pipe(tap(user => this.user.next(user)));
   }
 
   public createUser(user: User): Observable<User> {
