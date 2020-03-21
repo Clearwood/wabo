@@ -1,4 +1,12 @@
 .main {
   padding: 16px;
   overflow: auto;
+  height: 100%;
+  margin: auto;
+}
+.content {
+  padding: 8px;
+  button, div {
+    margin:  8px auto;
+  }
 }
