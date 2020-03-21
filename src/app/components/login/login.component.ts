@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
     const email = this.loginForm.get('email').value;
     this.authService.login(email, password).subscribe(() => {
-      this.router.navigate([this.route.snapshot.queryParams.returnUrl || '/']);
+      this.router.navigate([[this.route.snapshot.queryParams.returnUrl || '/'], {replaceUrl: true}]);
     });
   }
 

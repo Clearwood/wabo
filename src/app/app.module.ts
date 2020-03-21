@@ -49,11 +49,11 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,

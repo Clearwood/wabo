@@ -3,11 +3,11 @@
   <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center stretch" (ngSubmit)="onLogin()">
     <mat-form-field appearance="fill">
       <mat-label>{{ 'login.email' | translate}}</mat-label>
-      <input matInput type="email" formControlName="email" required>
+      <input matInput type="email" formControlName="email" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ 'login.password' | translate}}</mat-label>
-      <input matInput type="password" formControlName="password" required>
+      <input matInput formControlName="password" required />
     </mat-form-field>
     <button mat-raised-button color="primary" type=submit [disabled]="loginForm.invalid">{{'login.login' | translate}}</button>
   </form>
