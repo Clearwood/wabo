@@ -1,6 +1,6 @@
 export enum Tags {
     BIO = 'bio',
-    VEGETARIAN = 'vegi',
+    VEGETARIAN = 'veggie',
     VEGAN = 'vegan',
 }
 

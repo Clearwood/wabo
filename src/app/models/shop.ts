@@ -1,5 +1,5 @@
 export enum StoreTypes {
-    FARMACY = 'farmacy',
+    PHARMACY = 'pharmacy',
     SUPERMARKET = 'supermarket',
     DISCOUNTER = 'discounter',
     WHOLEFOOD = "wholefood",
