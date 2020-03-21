@@ -11,7 +11,7 @@ export interface Shop {
     streetName?: string;
     houseNumber?: string;
     city?: string;
-    postCode?: string;
+    postCode?: number;
 
     latitude?: number;
     longitude?: number;

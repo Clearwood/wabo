@@ -20,7 +20,7 @@ export class ShopService {
     streetName: "Dogstreet",
     houseNumber: "42",
     city: "Berlin",
-    postCode: "27182",
+    postCode: 27182,
 
     latitude: 0.0,
     longitude: 0.0,
