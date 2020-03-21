@@ -9,6 +9,7 @@ import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 import { zip } from 'rxjs';
 import { HealthStatus } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 interface ViewJob extends Job {
     consumer?: Consumer;
@@ -27,7 +28,8 @@ export class JobListComponent implements OnInit {
     constructor(
         private jobService: JobService,
         private consumerService: ConsumerService,
-        private shoppingListService: ShoppingListService
+        private shoppingListService: ShoppingListService,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -60,6 +62,7 @@ export class JobListComponent implements OnInit {
         });*/
         this.jobs = [
           {
+            shoppingListId: "DieAntwortAufDieFrage",
             consumer: {
               user: {
                 firstName: 'Johnny',
@@ -88,8 +91,10 @@ export class JobListComponent implements OnInit {
         ]
     }
 
-    public onDetailClick() {
-      console.log('Click on detail')
+    public onDetailClick(event, job: Job) {
+      console.log('Is it working?');
+      console.log(job.shoppingListId);
+      this.router.navigate([`jobs/detail/${job.shoppingListId}`]);
     }
 
     public onAcceptClick() {
