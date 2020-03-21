@@ -1,11 +1,17 @@
-<mat-card *ngFor="let job of jobs">
-    <mat-card-header>
-        <mat-card-title>{{job.consumer.user.firstName}} {{job.consumer.user.lastName}}</mat-card-title>
-        <mat-card-subtitle>{{job.consumer.user.healthStatus | translate}}</mat-card-subtitle>
-    </mat-card-header>
-
-    <div mat-actions align="end">
-        <button mat-button (click)="onAccept()">{{'job_list.accept' | translate}}</button>
-    </div>
-
-</mat-card>
+<div fxLayout="column" fxLayoutGap="16px">
+    <mat-card *ngFor="let job of jobs">
+        <mat-card-header>
+            <mat-card-title>{{job.consumer.user.firstName}} {{job.consumer.user.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{job.consumer.user.healthStatus | translate}}</mat-card-subtitle>
+        </mat-card-header>
+    
+        <mat-card-content>
+            <p>{{'job_list.shoppingBags' | translate}}: {{job.shoppingList.shoppingBagsAmount}}</p>
+            <p>{{'job_list.hasCooledProduct' | translate}}: {{job.shoppingList.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
+        </mat-card-content>
+    
+        <div mat-actions align="end">
+            <button mat-button (click)="onAccept()">{{'job_list.accept' | translate}}</button>
+        </div>
+    </mat-card>
+</div>

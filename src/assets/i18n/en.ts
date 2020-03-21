@@ -2,6 +2,10 @@ export const EN = {
   navigation: {
     home: 'Home',
     profile: 'Profile',
+  }, 
+  general: {
+    yes: 'Yes',
+    no: 'No'
   },
   user: {
     first_name: 'First Name',
@@ -13,6 +17,8 @@ export const EN = {
     healthy: 'Healthy',
   },
   job_list: {
-    accept: "accept",
+    accept: "Accept",
+    shoppingBags: 'Size of purchase',
+    hasCooledProduct: 'Contains cooled products',
   }
 };

@@ -3,6 +3,10 @@ export const DE = {
     home: 'Start',
     profile: 'Profil',
   },
+  general: {
+    yes: 'Ja',
+    no: 'Nein'
+  },
   home: {
     overview: 'Übersicht Aufträge',
     order: 'Bestellen',
@@ -18,6 +22,8 @@ export const DE = {
     healthy: 'Gesund'
   },
   job_list: {
-    accept: "Akzeptieren",
+    accept: 'Akzeptieren',
+    shoppingBags: 'Größe des Einkaufs',
+    hasCooledProduct: 'Besitzt gekühlte Produkte',
   }
 };

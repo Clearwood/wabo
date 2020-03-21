@@ -66,6 +66,23 @@ export class JobListComponent implements OnInit {
                 lastName: 'Joe',
                 healthStatus: HealthStatus.QUARANTINE,
               }
+            },
+            shoppingList: {
+              shoppingBagsAmount: 3,
+              hasCoooledProduct: true,
+            }
+          },
+          {
+            consumer: {
+              user: {
+                firstName: 'Eve',
+                lastName: 'A.',
+                healthStatus: HealthStatus.HEALTHY,
+              }
+            },
+            shoppingList: {
+              shoppingBagsAmount: 10,
+              hasCoooledProduct: false,
             }
           }
         ]
