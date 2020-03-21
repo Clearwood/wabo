@@ -17,7 +17,7 @@ export class ProductService {
 
   private mockProduct: Product = {
     id: 'lorem',
-    name: "milk",
+    name: "Toilet Paper",
     tags: [Tags.BIO]
   };
 
