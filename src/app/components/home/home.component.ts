@@ -13,10 +13,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onButtonClick() {
+  public onButtonClick() {
     this.snackbar.open('You Suck :-)', '', {
       duration: 3000,
     });
   }
+
+
 
 }

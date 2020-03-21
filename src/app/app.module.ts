@@ -11,12 +11,14 @@ import {Translate} from './shared/pipes/translate';
 import {ProfileComponent} from './components/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
+import { UserService } from './shared/services/user.service';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import {MatIconModule} from '@angular/material/icon';
     HeaderComponent,
     LoginComponent,
     Translate,
-    ProfileComponent
+    ProfileComponent,
+    OrderDetailComponent
   ],
   imports: [
     // core
@@ -38,11 +41,13 @@ import {MatIconModule} from '@angular/material/icon';
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfileComponent},
+      {path: 'order/:id', component: OrderDetailComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     // material
     MatButtonModule,
     MatInputModule,
@@ -52,7 +57,8 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   providers: [
     // services
-    TaskService
+    TaskService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

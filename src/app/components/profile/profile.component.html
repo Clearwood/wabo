@@ -1,1 +1,7 @@
-<p>profile works!</p>
+<form [formGroup]="addressForm">
+    <mat-form-field>
+        <mat-label>Stadt</mat-label>
+        <input matInput formControlName="city" required/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="addressForm?.invalid"></button>
+</form>
