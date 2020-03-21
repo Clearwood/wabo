@@ -15,17 +15,17 @@ export class ShopFeedbackService {
   private dataApiEndpoint = environment.apiUrl + '/shopXProduct';
 
   private mockFeedback: ShopFeedback = {
-    id: "YSNP",
+    id: 'YSNP',
 
-    shopId: "dolor",
-    supplierId: "idk",
+    shop_id: 'dolor',
+    supplier_id: 'idk',
 
     amountOfCostumers: AmountOfCostumers.HIGH,
     productAvailability: ProductAvailability.LOW,
   };
 
   public getShopFeedbackId(shopFeedbackId: string): Observable<ShopFeedback> {
-    //return this.http.get<Product>(`${this.dataApiEndpoint}/${shopFeedbackId}`)
+    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shopFeedbackId}`)
     return of(this.mockFeedback);
   }
 
