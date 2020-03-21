@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { UserService } from './shared/services/user.service';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { ProductService } from './shared/services/product.service';
+import { ShoppingItemService } from './shared/services/shoppingItem.service';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ProductService } from './shared/services/product.service';
     TaskService,
     UserService,
     ProductService,
+    ShoppingItemService,
   ],
   bootstrap: [AppComponent]
 })
