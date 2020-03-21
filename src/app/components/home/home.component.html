@@ -1,7 +1,6 @@
 <h1 class="headline">Willkommen User</h1>
 <div class="content center">
-  <button mat-raised-button color="primary" (click)="onButtonClick()" class="button-large">
-    Bestellung aufnehmen
-  </button>
-  <button mat-raised-button color="primary" (click)="onButtonClick()" class="button-large">Bestellung aufgeben</button>
+  <button mat-raised-button color="primary" (click)="onViewOverview()" class="button-large">{{'home.overview' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="onOrderClick()" class="button-large">{{'home.supply' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="onSupplyClick()" class="button-large">{{'home.order' | translate}}</button>
 </div>
