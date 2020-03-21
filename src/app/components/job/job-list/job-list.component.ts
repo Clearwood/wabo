@@ -69,7 +69,7 @@ export class JobListComponent implements OnInit {
             },
             shoppingList: {
               shoppingBagsAmount: 3,
-              hasCoooledProduct: true,
+              hasCooledProduct: true,
             }
           },
           {
@@ -82,7 +82,7 @@ export class JobListComponent implements OnInit {
             },
             shoppingList: {
               shoppingBagsAmount: 10,
-              hasCoooledProduct: false,
+              hasCooledProduct: false,
             }
           }
         ]
