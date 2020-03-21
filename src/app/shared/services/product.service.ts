@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Product } from 'src/app/models/product';
+import { Product, Tags } from 'src/app/models/product';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class ProductService {
   private mockProduct: Product = {
     id: 'lorem',
     name: "milk",
-    tags: []
+    tags: [Tags.BIO]
   };
 
   public getProductById(productId: string): Observable<Product> {
