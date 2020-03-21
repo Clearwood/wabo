@@ -18,13 +18,18 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { UserService } from './shared/services/user.service';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { ProductService } from './shared/services/product.service';
+import { ShoppingItemService } from './shared/services/shopping-item.service';
+import { ShopService } from './shared/services/shop.service';
+import { ShopXProductsService } from './shared/services/shop-x-products.service';
+import { ShopFeedbackService } from './shared/services/shop-feedback.service';
 import { JobListComponent } from './components/job/job-list/job-list.component';
 import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
 import {MatCardModule} from '@angular/material/card';
-
 
 @NgModule({
   declarations: [
@@ -68,9 +73,14 @@ import {MatCardModule} from '@angular/material/card';
     // services
     TaskService,
     UserService,
+    ProductService,
+    ShoppingItemService,
+    ShopService,
+    ShopXProductsService,
+    ShopFeedbackService,
     AuthService,
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
