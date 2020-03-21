@@ -8,9 +8,9 @@ export enum JobStatus {
 
 export interface Job  extends Entity {
   status?: JobStatus;
-  supplierId?: string;
-  consumerId?: string;
-  shopId?: string;
+  supplier_id?: string;
+  consumer_id?: string;
+  shop_id?: string;
   receipt?: string;
   moneyForShop?: number;
   moneyForSupplier?: number;

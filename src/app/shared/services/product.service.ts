@@ -17,12 +17,12 @@ export class ProductService {
 
   private mockProduct: Product = {
     id: 'lorem',
-    name: "Toilet Paper",
+    name: 'Toilet Paper',
     tags: [Tags.BIO]
   };
 
   public getProductById(productId: string): Observable<Product> {
-    //return this.http.get<Product>(`${this.dataApiEndpoint}/${productId}`)
+    // return this.http.get<Product>(`${this.dataApiEndpoint}/${productId}`)
     return of(this.mockProduct);
   }
 

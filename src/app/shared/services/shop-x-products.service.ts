@@ -15,16 +15,16 @@ export class ShopXProductsService {
   private dataApiEndpoint = environment.apiUrl + '/shopXProduct';
 
   private mockProduct: ShopXProduct = {
-    id: "xkcd",
+    id: 'xkcd',
 
-    shopId: "dolor",
-    productId: "lorem",
+    shop_id: 'dolor',
+    product_id: 'lorem',
 
     isAvailable: false,
   };
 
   public getShopXProductById(shopXProductId: string): Observable<ShopXProduct> {
-    //return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
+    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
     return of(this.mockProduct);
   }
 

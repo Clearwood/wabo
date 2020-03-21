@@ -4,10 +4,10 @@ export enum StoreTypes {
     PHARMACY = 'pharmacy',
     SUPERMARKET = 'supermarket',
     DISCOUNTER = 'discounter',
-    WHOLEFOOD = "wholefood",
+    WHOLEFOOD = 'wholefood',
   }
 
-export interface Shop extends Entity{
+export interface Shop extends Entity {
     streetName?: string;
     houseNumber?: string;
     city?: string;
