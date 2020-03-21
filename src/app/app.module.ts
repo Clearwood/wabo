@@ -6,7 +6,7 @@ import {HomeComponent} from './components/home/home.component';
 import {TaskService} from './shared/services/task.service';
 import {HeaderComponent} from './shared/header/header.component';
 import {LoginComponent} from './components/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Translate} from './shared/pipes/translate';
 import {ProfileComponent} from './components/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,7 +18,11 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { UserService } from './shared/services/user.service';
-import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { JobListComponent } from './components/job/job-list/job-list.component';
+import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
+import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
+import {AuthService} from './core/authentication/auth.service';
+import {AuthGuard} from './core/authentication/auth.guard';
 
 
 @NgModule({
@@ -27,12 +31,13 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    // shared
+    ProfileComponent,
     HeaderComponent,
+    // shared
     LoginComponent,
     Translate,
-    ProfileComponent,
-    OrderDetailComponent
+    JobListComponent,
+    JobDetailComponent,
   ],
   imports: [
     // core
@@ -41,7 +46,8 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'order/:id', component: OrderDetailComponent},
+      {path: 'jobs', component: JobListComponent},
+      {path: 'jobs/detail/:id', component: JobDetailComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,
@@ -59,6 +65,9 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     // services
     TaskService,
     UserService,
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

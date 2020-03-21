@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +8,21 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private snackbar: MatSnackBar) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  public onButtonClick() {
-    this.snackbar.open('You Suck :-)', '', {
-      duration: 3000,
-    });
+  onViewOverview() {
   }
+
+  onOrderClick() {
+  }
+
+  onSupplyClick() {
+    this.router.navigate(['jobs']);
+  }
+
 
 
 
