@@ -6,7 +6,7 @@ import {HomeComponent} from './components/home/home.component';
 import {TaskService} from './shared/services/task.service';
 import {HeaderComponent} from './shared/header/header.component';
 import {LoginComponent} from './components/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Translate} from './shared/pipes/translate';
 import {ProfileComponent} from './components/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,7 +24,11 @@ import { ShoppingItemService } from './shared/services/shopping-item.service';
 import { ShopService } from './shared/services/shop.service';
 import { ShopXProductsService } from './shared/services/shop-x-products.service';
 import { ShopFeedbackService } from './shared/services/shop-feedback.service';
-
+import { JobListComponent } from './components/job/job-list/job-list.component';
+import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
+import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
+import {AuthService} from './core/authentication/auth.service';
+import {AuthGuard} from './core/authentication/auth.guard';
 
 @NgModule({
   declarations: [
@@ -32,12 +36,13 @@ import { ShopFeedbackService } from './shared/services/shop-feedback.service';
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    // shared
+    ProfileComponent,
     HeaderComponent,
+    // shared
     LoginComponent,
     Translate,
-    ProfileComponent,
-    OrderDetailComponent
+    JobListComponent,
+    JobDetailComponent,
   ],
   imports: [
     // core
@@ -46,7 +51,8 @@ import { ShopFeedbackService } from './shared/services/shop-feedback.service';
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'order/:id', component: OrderDetailComponent},
+      {path: 'jobs', component: JobListComponent},
+      {path: 'jobs/detail/:id', component: JobDetailComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,
@@ -69,6 +75,9 @@ import { ShopFeedbackService } from './shared/services/shop-feedback.service';
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

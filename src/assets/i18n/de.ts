@@ -3,6 +3,11 @@ export const DE = {
     home: 'Start',
     profile: 'Profil',
   },
+  home: {
+    overview: 'Übersicht Aufträge',
+    order: 'Bestellen',
+    supply: 'Liefern',
+  },
   user: {
     first_name: 'Vorname',
     last_name: 'Nachname'
