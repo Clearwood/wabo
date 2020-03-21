@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "wabo"
+  "defaultProject": "wabo",
+  "cli": {
+    "analytics": false
+  }
 }
