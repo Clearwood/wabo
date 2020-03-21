@@ -88,7 +88,11 @@ export class JobListComponent implements OnInit {
         ]
     }
 
-    public onAccept() {
+    public onDetailClick() {
+      console.log('Click on detail')
+    }
+
+    public onAcceptClick() {
       console.log('Ellenar ist ein noob');
     }
 

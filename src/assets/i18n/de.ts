@@ -23,6 +23,7 @@ export const DE = {
   },
   job_list: {
     accept: 'Akzeptieren',
+    detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',
   }
