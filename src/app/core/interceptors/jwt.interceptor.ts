@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from '../authentication/auth.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -16,7 +17,13 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
-    return next.handle(req);
+    return next.handle(req).pipe(map(resp => {
+      // @ts-ignore
+      if (resp instanceof HttpResponse) {
+        return resp.clone({ body: resp.body.data });
+      }
+      return resp;
+    }));
   }
 
 

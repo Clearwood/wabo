@@ -1,0 +1,28 @@
+<app-header componentName="shopping-list"></app-header>
+<div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="16px" class="main">
+  <mat-card *ngFor="let item of items; let i = index" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+    <div fxFlex="80">
+      <mat-form-field class="large" *ngIf="!item.product">
+        <input matInput [placeholder]="'shopping.list.product_name' | translate"
+               type="text" [matAutocomplete]="autoIdentity" [formControl]="productForms[i]">
+        <mat-autocomplete #autoIdentity="matAutocomplete" [displayWith]="displayedValue"
+                          (optionSelected)="onSelectOption($event.option.value, i)">
+          <mat-option *ngFor="let product of productOptions | async" [value]="product">
+            {{product.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div>{{item?.product?.name}}</div>
+    </div>
+
+    <mat-form-field style="width: 48px; font-size: smaller">
+      <mat-select [(ngModel)]="item.quantity">
+        <mat-option *ngFor="let n of [1,2,3,4,5,6]" [value]="n">{{n}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-icon-button (click)="onDeleteClick(i)">
+      <mat-icon class="font-size-l">delete</mat-icon>
+    </button>
+  </mat-card>
+  <button mat-raised-button color="primary" [disabled]="items.length < 5" (click)="onSaveClick()">Speichern</button>
+</div>

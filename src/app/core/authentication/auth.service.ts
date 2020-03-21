@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {UserService} from '../../shared/services/user.service';
 import {BehaviorSubject, of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 
 type Token = string;
 
@@ -28,7 +28,8 @@ export class AuthService {
         switchMap((token: Token) => {
           localStorage.setItem('token', token);
           return this.userService.getUser();
-        })
+        }),
+        tap(user => { localStorage.setItem('user', JSON.stringify(user)); })
       );
   }
 }

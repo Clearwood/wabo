@@ -1,6 +1,6 @@
-<h1 class="headline">Willkommen User</h1>
-<div class="content center">
+<app-header></app-header>
+<div class="main center" fxLayout="column" fxLayoutGap="16px">
   <button mat-raised-button color="primary" (click)="onViewOverview()" class="button-large">{{'home.overview' | translate}}</button>
-  <button mat-raised-button color="primary" (click)="onOrderClick()" class="button-large">{{'home.supply' | translate}}</button>
-  <button mat-raised-button color="primary" (click)="onSupplyClick()" class="button-large">{{'home.order' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="onSupplyClick()" class="button-large">{{'home.supply' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="onOrderClick()" class="button-large">{{'home.order' | translate}}</button>
 </div>

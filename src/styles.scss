@@ -5,6 +5,7 @@
 @import './styles/images.scss';
 @import './styles/buttons.scss';
 @import './styles/material.scss';
+@import './styles/variables.scss';
 
 html, body {
   margin: 0;
@@ -14,4 +15,10 @@ html, body {
   color: $font-color;
   background-color: $background-color;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  * {
+    max-width: 100%;
+  }
+}
+.mat-body, .mat-body-1, .mat-typography {
+  font: 400 16px/24px Roboto, "Helvetica Neue", sans-serif;
 }

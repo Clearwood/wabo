@@ -1,15 +1,23 @@
 .main {
+  min-height: 60%;
   padding: 16px;
-  overflow: auto;
-  height: 100%;
   margin: auto;
-}
-.content {
-  padding: 8px;
-  height: 100%;
-  button, div {
-    margin:  8px
+  width: 640px;
+  &.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-height: 60%;
   }
+}
+
+// big displays
+@media (min-width: 1280px) {
+}
+
+// small displays
+@media (max-width: 960px) {
 }
 
 form {

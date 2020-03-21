@@ -29,6 +29,10 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
 import {MatCardModule} from '@angular/material/card';
+import { ShoppingListComponent } from './components/shopping/shopping-list/shopping-list.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+import {ShoppingListService} from './shared/services/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import {MatCardModule} from '@angular/material/card';
     Translate,
     JobListComponent,
     JobDetailComponent,
+    ShoppingListComponent,
   ],
   imports: [
     // core
@@ -53,6 +58,7 @@ import {MatCardModule} from '@angular/material/card';
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
@@ -66,7 +72,9 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [
     // services
@@ -74,6 +82,7 @@ import {MatCardModule} from '@angular/material/card';
     UserService,
     ProductService,
     ShoppingItemService,
+    ShoppingListService,
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,
