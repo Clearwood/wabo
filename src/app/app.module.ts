@@ -18,6 +18,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+
+
 import { UserService } from './shared/services/user.service';
 import { ProductService } from './shared/services/product.service';
 import { ShoppingItemService } from './shared/services/shopping-item.service';
@@ -69,6 +72,7 @@ import { ShoppingListService } from './shared/services/shopping-list.service';
     MatSnackBarModule,
     MatIconModule,
     MatCardModule,
+    MatListModule,
   ],
   providers: [
     // services

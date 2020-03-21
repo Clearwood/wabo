@@ -1,13 +1,13 @@
-<div fxLayout="column" fxLayoutGap="16px">
+<div fxLayout="column" fxLayoutGap="16px" class="content center">
     <mat-card *ngFor="let job of jobs">
         <mat-card-header>
-            <mat-card-title>{{job.consumer.user.firstName}} {{job.consumer.user.lastName}}</mat-card-title>
-            <mat-card-subtitle>{{job.consumer.user.healthStatus | translate}}</mat-card-subtitle>
+            <mat-card-title>{{job?.consumer?.user?.firstName}} {{job?.consumer?.user?.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{'health.' + job?.consumer?.user?.healthStatus | translate}}</mat-card-subtitle>
         </mat-card-header>
     
         <mat-card-content>
-            <p>{{'job_list.shoppingBags' | translate}}: {{job.shoppingList.shoppingBagsAmount}}</p>
-            <p>{{'job_list.hasCooledProduct' | translate}}: {{job.shoppingList.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
+            <p>{{'job_list.shoppingBags' | translate}}: {{job?.shoppingList?.shoppingBagsAmount}}</p>
+            <p>{{'job_list.hasCooledProduct' | translate}}: {{job?.shoppingList?.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
         </mat-card-content>
     
         <div mat-actions align="end">

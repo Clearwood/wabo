@@ -14,7 +14,11 @@ export const DE = {
   },
   user: {
     first_name: 'Vorname',
-    last_name: 'Nachname'
+    last_name: 'Nachname',
+    street: 'Straße',
+    postCode: 'Postleitzahl, Stadt',
+    addressAddition: 'Adresszusatz',
+    phone: 'Telefonnummer',
   },
   health: {
     quarantine: 'Quarantäne',

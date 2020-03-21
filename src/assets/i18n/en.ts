@@ -9,7 +9,11 @@ export const EN = {
   },
   user: {
     first_name: 'First Name',
-    last_name: 'Last Name'
+    last_name: 'Last Name',
+    street: 'Street',
+    postCode: 'Postcode, City',
+    addressAddition: 'Address suffix',
+    phone: 'Phonenumber',
   },
   health: {
     quarantine: 'Quarantine',

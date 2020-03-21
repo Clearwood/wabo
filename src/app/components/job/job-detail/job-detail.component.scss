@@ -1,0 +1,9 @@
+.fullscreen {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+}
+
+.list-container {
+    max-height: 40%;
+    overflow: auto;
+}
