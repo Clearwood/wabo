@@ -1,3 +1,5 @@
+import { Entity } from './entity';
+
 export enum AmountOfCostumers {
     LOW = "low",
     MEDIUM = "medium",
@@ -10,9 +12,7 @@ export enum ProductAvailability {
     HIGH = "high",
 }
 
-export interface ShopFeedback {
-    id?: string;
-
+export interface ShopFeedback extends Entity {
     shopId?: string;
     supplierId?: string;
 

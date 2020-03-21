@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ShopFeedback, AmountOfCostumers, ProductAvailability } from 'src/app/models/shopFeedback';
+import { ShopFeedback, AmountOfCostumers, ProductAvailability } from 'src/app/models/shop-feedback';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
