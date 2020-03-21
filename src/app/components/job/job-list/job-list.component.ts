@@ -8,6 +8,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 import { zip } from 'rxjs';
+import { HealthStatus } from 'src/app/models/user';
 
 interface ViewJob extends Job {
     consumer?: Consumer;
@@ -21,7 +22,7 @@ interface ViewJob extends Job {
 })
 export class JobListComponent implements OnInit {
 
-    private jobs: ViewJob[];
+    public jobs: ViewJob[];
 
     constructor(
         private jobService: JobService,
@@ -34,7 +35,7 @@ export class JobListComponent implements OnInit {
     }
 
     private getJobs() {
-        const params = new HttpParams().set('longitude', '0.0').set('latidue', '0.0').set('supplierId ', 'null');
+        /*const params = new HttpParams().set('longitude', '0.0').set('latidue', '0.0').set('supplierId ', 'null');
         this.jobService.getAllJobs(params).pipe(
             switchMap((jobs: ViewJob[]) => {
                 const jobsObs = jobs.map(job => {
@@ -56,7 +57,22 @@ export class JobListComponent implements OnInit {
             }),
         ).subscribe(jobs => {
             this.jobs = jobs;
-        });
+        });*/
+        this.jobs = [
+          {
+            consumer: {
+              user: {
+                firstName: 'Johnny',
+                lastName: 'Joe',
+                healthStatus: HealthStatus.QUARANTINE,
+              }
+            }
+          }
+        ]
+    }
+
+    public onAccept() {
+      console.log('Ellenar ist ein noob');
     }
 
 }

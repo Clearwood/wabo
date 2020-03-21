@@ -11,5 +11,13 @@ export const DE = {
   user: {
     first_name: 'Vorname',
     last_name: 'Nachname'
+  },
+  health: {
+    quarantine: 'Quarantäne',
+    sick: 'Krank',
+    healthy: 'Gesund'
+  },
+  job_list: {
+    accept: "Akzeptieren",
   }
 };

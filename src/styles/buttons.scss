@@ -5,3 +5,14 @@
   height: 80px;
   font-size: $font-size-l;
 }
+
+.mat-actions {
+  // ...
+  &[align='end'] {
+    justify-content: flex-end;
+  }
+
+  &[align='center'] {
+    justify-content: center;
+  }
+}

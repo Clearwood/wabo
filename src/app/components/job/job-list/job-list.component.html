@@ -1,1 +1,11 @@
-<p>job-list works!</p>
+<mat-card *ngFor="let job of jobs">
+    <mat-card-header>
+        <mat-card-title>{{job.consumer.user.firstName}} {{job.consumer.user.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{job.consumer.user.healthStatus | translate}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <div mat-actions align="end">
+        <button mat-button (click)="onAccept()">{{'job_list.accept' | translate}}</button>
+    </div>
+
+</mat-card>

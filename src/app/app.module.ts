@@ -17,8 +17,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 import { UserService } from './shared/services/user.service';
-import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { ProductService } from './shared/services/product.service';
 import { ShoppingItemService } from './shared/services/shopping-item.service';
 import { ShopService } from './shared/services/shop.service';
@@ -29,6 +29,9 @@ import { JobDetailComponent } from './components/job/job-detail/job-detail.compo
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
+import { JobService } from './shared/services/job.service';
+import { ConsumerService } from './shared/services/consumer.service';
+import { ShoppingListService } from './shared/services/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -64,13 +67,17 @@ import {AuthGuard} from './core/authentication/auth.guard';
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
   ],
   providers: [
     // services
     TaskService,
     UserService,
     ProductService,
+    JobService,
+    ConsumerService,
+    ShoppingListService,
     ShoppingItemService,
     ShopService,
     ShopXProductsService,

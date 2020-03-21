@@ -1,9 +1,9 @@
 import {Entity} from './entity';
 
 export enum HealthStatus {
-  QUARANTINE = 'quarantine',
-  SICK = 'sick',
-  HEALTHY = 'healthy',
+  QUARANTINE = 'health.quarantine',
+  SICK = 'health.sick',
+  HEALTHY = 'health.healthy',
 }
 
 export interface User extends Entity {
