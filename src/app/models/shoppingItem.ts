@@ -7,7 +7,7 @@ export enum Unit {
   }
 
 export interface ShoppingItem extends Entity {
-    shopingListId?: string;
+    shoppingList_id?: string;
 
     productId?: string;
     quantity?: number;

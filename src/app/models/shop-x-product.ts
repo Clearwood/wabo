@@ -1,8 +1,8 @@
 import { Entity } from './entity';
 
 export interface ShopXProduct extends Entity {
-    shopId?: string;
-    productId?: string;
+    shop_id?: string;
+    product_id?: string;
 
     isAvailable?: boolean;
 }
