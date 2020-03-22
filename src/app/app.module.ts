@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {HeaderComponent} from './shared/header/header.component';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './components/login/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Translate} from './shared/pipes/translate';
 import {ProfileComponent} from './components/profile/profile.component';
@@ -47,6 +47,7 @@ import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted
 import { OrderListComponent } from './components/overview/order-list/order-list.component';
 import { OrderDetailComponent } from './components/overview/order-detail/order-detail.component';
 import {SupplierService} from './shared/services/supplier.service';
+import { SignUpComponent } from './components/login/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {SupplierService} from './shared/services/supplier.service';
     FooterComponent,
     OrderListComponent,
     OrderDetailComponent,
+    SignUpComponent,
   ],
   imports: [
     // core
@@ -82,6 +84,7 @@ import {SupplierService} from './shared/services/supplier.service';
       {path: 'overview/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
       {path: 'overview/' , redirectTo: 'overview/list'},
       {path: 'login', component: LoginComponent},
+      {path: 'sign-up', component: SignUpComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,

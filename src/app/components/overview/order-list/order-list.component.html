@@ -1,20 +1,17 @@
 <app-header componentName="jobs"></app-header>
 <div fxLayout="column" fxLayoutGap="16px" class="main">
-  <mat-card *ngFor="let job of jobs">
-    <mat-card-header>
+  <mat-card *ngFor="let job of jobs" (click)="onDetailsClick(job?.id)">
+    <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
       <mat-card-title>{{job?.createdAt | date: 'dd.MM.yyyy, HH:mm'}} Uhr</mat-card-title>
       <mat-card-subtitle>{{'job_list.shoppingBags' | translate}}
         : {{('job_list.shoppingBagsAmount.' + job?.shoppingList?.shoppingBagsAmount.toString()) | translate}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div (click)="onDetailsClick(job?.id)" fxLayout="column" class="order-card">
-        <div class="icon-image" fxLayoutAlign="flex-end" fxLayoutGap="32px"
-             [ngClass]="'background-' + (job.isUserSupplier ? 'warn' : job.isUserConsumer ? 'accent' : 'primary')">
-          <img *ngIf="!job.isUserSupplier" src="../../../../assets/icons/home/home_order.svg">
-          <img *ngIf="!job.isUserConsumer" src="../../../../assets/icons/home/home_supply.svg">
+      <div fxLayout="column" class="order-card">
+        <div class="icon-image">
+          <img src="../../../../assets/icons/shopping/car_order.svg">
+          <img src="../../../../assets/icons/shopping/shopping-cart-fill.svg">
         </div>
       </div>
-    </mat-card-content>
+    </mat-card-header>
   </mat-card>
 </div>
 

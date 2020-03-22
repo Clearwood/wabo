@@ -2,25 +2,39 @@ import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Consumer} from 'src/app/models/consumer';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {UserService} from './user.service';
 
 @Injectable()
 export class ConsumerService {
 
-  private consumer: Consumer;
+  private consumer: BehaviorSubject<Consumer> = new BehaviorSubject<Consumer>(null);
 
   constructor(private http: HttpClient,
+              private userService: UserService
   ) {
+    this.userService.currentUserSubject.subscribe(user => {
+      const params = new HttpParams().set('user_id', user.id);
+      this.getAllConsumers(params).subscribe(consumers => {
+        if (consumers.length) {
+          this.consumer.next(consumers[0]);
+        }
+      });
+    });
   }
 
   private dataApiEndpoint = environment.apiUrl + '/consumers';
 
-  public get currentConsumer(): Consumer {
+  public get currentConsumerSubject(): BehaviorSubject<Consumer> {
     return this.consumer;
   }
 
+  public get currentConsumer(): Consumer {
+    return this.consumer.value;
+  }
+
   public set currentConsumer(consumer: Consumer) {
-    this.consumer = consumer;
+    this.consumer.next(consumer) ;
   }
 
   public getConsumerById(consumerId: string): Observable<Consumer> {
