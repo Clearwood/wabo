@@ -41,6 +41,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './shared/footer/footer.component';
 import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
 import { SupplierService } from './shared/services/supplier.service';
@@ -95,6 +96,7 @@ import { SupplierService } from './shared/services/supplier.service';
     MatSlideToggleModule,
     MatIconModule,
     MatListModule,
+    MatExpansionModule,
   ],
   providers: [
     UserService,
