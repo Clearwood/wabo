@@ -28,5 +28,12 @@ export const EN = {
     detail: 'Details',
     shoppingBags: 'Size of purchase',
     hasCooledProduct: 'Contains cooled products',
+  },
+  job_extra: {
+    additionalInfo: 'Additional Info',
+    max_distance: 'Maximal Distance',
+    weight: 'Weight',
+    frozen: 'Can contain frozen products',
+    search: 'Search',
   }
 };

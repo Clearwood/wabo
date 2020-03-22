@@ -4,8 +4,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {Job, JobStatus} from 'src/app/models/job';
 import { Observable} from 'rxjs';
 
+export interface SearchParams {
+  maxDistance: number;
+  maxWeight: number;
+  canContainFrozen: boolean;
+}
+
 @Injectable()
 export class JobService {
+
+  private searchParams: SearchParams;
 
   constructor(private http: HttpClient,
   ) {
@@ -36,4 +44,12 @@ export class JobService {
   public getJobStatus(jobId): Observable<JobStatus> {
     return this.http.get<JobStatus>(`${this.dataApiEndpoint}/${jobId}/status`);
   }
+
+  public setSearchParams(searchParams: SearchParams) {
+    this.searchParams = searchParams;
+  }
+
+  public getSearchParams(): SearchParams {
+    return this.searchParams;
+  } 
 }
