@@ -25,7 +25,7 @@ export const DE = {
     }
   },
   home: {
-    overview: 'Übersicht Aufträge',
+    overview: 'Auftragsübersicht',
     order: 'Bestellen',
     supply: 'Liefern',
   },
