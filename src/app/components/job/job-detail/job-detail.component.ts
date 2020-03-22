@@ -75,9 +75,9 @@ export class JobDetailComponent implements OnInit {
     this.shoppingItemService.getAllShoppingItem(params).pipe(
       switchMap((items: ShoppingListProduct[]) => {
         const shoppingOps = items.map(item => {
-          return this.productService.getProductById(item.productId).pipe(map(product => {
+          return this.productService.getProductById(item.product_id).pipe(map(product => {
             item.product = product;
-            return product;
+            return item;
           }));
 
         });
@@ -86,69 +86,6 @@ export class JobDetailComponent implements OnInit {
     ).subscribe(shoppingListProducts => {
       this.shoppingListProducts = shoppingListProducts;
     });
-
-    this.shoppingListProducts = this.shoppingListProducts = [
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-    ];
   }
 
   public onBackClick() {
@@ -156,7 +93,7 @@ export class JobDetailComponent implements OnInit {
   }
 
   public onAcceptClick() {
-    
+
   }
 
 }

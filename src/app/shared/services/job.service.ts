@@ -29,7 +29,7 @@ export class JobService {
     return this.http.delete<Job>(this.dataApiEndpoint + '/' + jobId);
   }
 
-  public getAllJobs(params?: Object): Observable<Job[]> {
-    return this.http.get<Job[]>(this.dataApiEndpoint, params);
+  public getAllJobs(params?: HttpParams): Observable<Job[]> {
+    return this.http.get<Job[]>(this.dataApiEndpoint, {params});
   }
 }

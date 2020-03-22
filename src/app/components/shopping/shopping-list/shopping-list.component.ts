@@ -103,7 +103,7 @@ export class ShoppingListComponent implements OnInit {
       }),
       switchMap(shoppingList => {
         const createItemsObs = this.items.map(item => {
-          item.productId = item.product.id;
+          item.product_id = item.product.id;
           item.shoppingList_id = shoppingList.id;
           return this.shoppingItemService.createShoppingItem(item);
         });

@@ -28,7 +28,7 @@
                     <mat-list-option *ngFor="let shoppingListProduct of shoppingListProducts">
                         <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
                             <p>{{shoppingListProduct?.product?.name}}</p>
-                            <p *ngIf="shoppingListProduct?.quantity">{{shoppingListProduct?.quantity}}x</p>
+                            <p *ngIf="shoppingListProduct?.quantity">{{+shoppingListProduct?.quantity}}x</p>
                             <p *ngIf="!shoppingListProduct?.quantity">1x</p>
                         </div>
                     </mat-list-option>

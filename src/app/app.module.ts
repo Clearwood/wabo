@@ -43,6 +43,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FooterComponent } from './shared/footer/footer.component';
 import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
+import { SupplierService } from './shared/services/supplier.service';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,
+    SupplierService,
     AuthService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

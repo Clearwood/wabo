@@ -58,69 +58,6 @@ export class JobAcceptedComponent implements OnInit {
       this.shoppingListID = job.shoppingList_id;
       this.getShoppingListProducts(this.shoppingListID);
     });
-
-    this.shoppingListProducts = this.shoppingListProducts = [
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-      {
-        product: {
-          name: 'Test'
-        }
-      },
-    ];
   }
 
   // Call this after getting the information for the job; We need the job id for the accept action.
@@ -137,9 +74,9 @@ export class JobAcceptedComponent implements OnInit {
     this.shoppingItemService.getAllShoppingItem(params).pipe(
       switchMap((items: ShoppingListProduct[]) => {
         const shoppingOps = items.map(item => {
-          return this.productService.getProductById(item.productId).pipe(map(product => {
+          return this.productService.getProductById(item.product_id).pipe(map(product => {
             item.product = product;
-            return product;
+            return item;
           }));
 
         });
@@ -152,7 +89,7 @@ export class JobAcceptedComponent implements OnInit {
 
   public onDeliveredClick() {
     // Implement check if the purchases were really delivered
-    this.router.navigate['home'];
+    this.router.navigate(['home']);
   }
 
 }
