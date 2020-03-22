@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JobService, SearchParams } from 'src/app/shared/services/job.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-extra-info',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobExtraInfoComponent implements OnInit {
 
-  public distanceInKm: number = 1;
+  public distanceInKm: number = 4;
   public shoppingBagsAmount: number = 3;
   public hasFrostedProducts: boolean = false;
 
-  constructor() { }
+  constructor(
+    private jobService: JobService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +26,15 @@ export class JobExtraInfoComponent implements OnInit {
   }
 
   public onSearchClick() {
+    const searchParams: SearchParams = {
+      maxDistance: this.distanceInKm,
+      maxWeight: this.shoppingBagsAmount,
+      canContainFrozen: this.hasFrostedProducts,
+    }
 
+    this.jobService.setSearchParams(searchParams);
+
+    this.router.navigate(['jobs/list']);
   }
 
 }

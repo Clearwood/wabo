@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Job, JobStatus} from 'src/app/models/job';
-import {JobService} from 'src/app/shared/services/job.service';
+import {JobService, SearchParams} from 'src/app/shared/services/job.service';
 import {Consumer} from 'src/app/models/consumer';
 import {ShoppingList} from 'src/app/models/shopping-list';
 import {ConsumerService} from 'src/app/shared/services/consumer.service';
@@ -42,7 +42,23 @@ export class JobListComponent implements OnInit {
   }
 
   private getJobs() {
-    const params = new HttpParams().set('longitude', '13.3372608').set('latitude', '52.5041028');
+    let searchParams: SearchParams = this.jobService.getSearchParams();
+
+    if(!searchParams) {
+      searchParams = {
+        maxDistance: 10,
+        maxWeight: 6,
+        canContainFrozen: true
+      };
+    }
+
+    const params = new HttpParams()
+      .set('longitude', '13.3372608')
+      .set('latitude', '52.5041028')
+      .set('searchRadius', searchParams.maxDistance.toString())
+      .set('shoppingBagsAmount', searchParams.maxWeight.toString())
+      .set('hasCooledProduct', (searchParams.canContainFrozen ? 1 : 0).toString());
+      // TODO add supplier ID .set('supplier_id',...)
     this.jobService.getAllJobs(params).pipe(
       switchMap((jobs: ViewJob[]) => {
         const jobsObs = jobs.map(job => {
