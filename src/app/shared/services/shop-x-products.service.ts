@@ -14,18 +14,8 @@ export class ShopXProductsService {
 
   private dataApiEndpoint = environment.apiUrl + '/shopXProduct';
 
-  private mockProduct: ShopXProduct = {
-    id: 'xkcd',
-
-    shop_id: 'dolor',
-    product_id: 'lorem',
-
-    isAvailable: false,
-  };
-
   public getShopXProductById(shopXProductId: string): Observable<ShopXProduct> {
-    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
-    return of(this.mockProduct);
+    return this.http.get<ShopXProduct>(`${this.dataApiEndpoint}/${shopXProductId}`);
   }
 
   public createShopXProduct(shopXProduct: ShopXProduct): Observable<ShopXProduct> {

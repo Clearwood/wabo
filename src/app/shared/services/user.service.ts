@@ -14,12 +14,6 @@ export class UserService {
 
   private dataApiEndpoint = environment.apiUrl + '/users';
 
-  private mockUser: User = {
-    id: '1',
-    firstName: 'John',
-    lastName: 'Doe'
-  };
-
   private user: BehaviorSubject<User> = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
 
   public get currentUserSubject(): BehaviorSubject<User> {
@@ -31,15 +25,11 @@ export class UserService {
   }
 
   public getUserById(userId: string): Observable<User> {
-    // return this.http.get<User>(this.dataApiEndpoint + '/' + userId);
-    return of(this.mockUser);
+   return this.http.get<User>(this.dataApiEndpoint + '/' + userId);
   }
 
   public getUser(): Observable<User> {
-    // return this.http.get<User>(this.dataApiEndpoint + '/' + userId);
-    return of(this.mockUser).pipe(tap(user => {
-      this.user.next(user);
-    }));
+    return this.http.get<User>(this.dataApiEndpoint);
   }
 
   public createUser(user: User): Observable<User> {
