@@ -1,3 +1,4 @@
+@import "colors";
 .main {
   min-height: 60%;
   padding: 16px;
@@ -26,4 +27,14 @@
 form {
   display: flex;
   flex-direction: column;
+}
+
+.background-primary {
+  background-color: $primary;
+}
+.background-warn {
+  background-color: $warn;
+}
+.background-accent {
+  background-color: $accent;
 }
