@@ -18,6 +18,6 @@ export interface Product extends Entity {
     shopType?: string;
     priceRangeMin?: number;
     priceRangeMax?: number;
-    quantityUni?: QuantityUnit;
+    quantityUnit?: QuantityUnit;
     needsCooling?: boolean;
 }

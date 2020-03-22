@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
-import {TaskService} from './shared/services/task.service';
 import {HeaderComponent} from './shared/header/header.component';
 import {LoginComponent} from './components/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -33,21 +32,27 @@ import { ShoppingListComponent } from './components/shopping/shopping-list/shopp
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import {ShoppingListService} from './shared/services/shopping-list.service';
+import {MatChipsModule} from '@angular/material/chips';
+import { ShoppingListDialogComponent } from './components/shopping/shopping-list-dialog/shopping-list-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
-    // components
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ProfileComponent,
     HeaderComponent,
-    // shared
     LoginComponent,
     Translate,
     JobListComponent,
     JobDetailComponent,
     ShoppingListComponent,
+    ShoppingListDialogComponent,
+    CommentDialogComponent,
   ],
   imports: [
     // core
@@ -74,11 +79,13 @@ import {ShoppingListService} from './shared/services/shopping-list.service';
     MatIconModule,
     MatCardModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   providers: [
-    // services
-    TaskService,
     UserService,
     ProductService,
     ShoppingItemService,

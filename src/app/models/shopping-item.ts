@@ -1,7 +1,8 @@
-import { Entity } from './entity';
+import {Entity} from './entity';
 
 export interface ShoppingItem extends Entity {
-    shoppingList_id?: string;
-    productId?: string;
-    quantity?: number;
+  shoppingList_id?: string;
+  productId?: string;
+  quantity?: number;
+  comment?: string;
 }

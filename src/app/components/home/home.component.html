@@ -1,6 +1,6 @@
 <app-header></app-header>
-<div class="main center" fxLayout="column" fxLayoutGap="16px">
+<div class="main center" fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
   <button mat-raised-button color="primary" (click)="onViewOverview()" class="button-large">{{'home.overview' | translate}}</button>
-  <button mat-raised-button color="primary" (click)="onSupplyClick()" class="button-large">{{'home.supply' | translate}}</button>
-  <button mat-raised-button color="primary" (click)="onOrderClick()" class="button-large">{{'home.order' | translate}}</button>
+  <button mat-raised-button color="warn" (click)="onSupplyClick()" class="button-large">{{'home.supply' | translate}}</button>
+  <button mat-raised-button color="accent" (click)="onOrderClick()" class="button-large">{{'home.order' | translate}}</button>
 </div>

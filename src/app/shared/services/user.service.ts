@@ -12,7 +12,7 @@ export class UserService {
   ) {
   }
 
-  private dataApiEndpoint = environment.apiUrl + '/user';
+  private dataApiEndpoint = environment.apiUrl + '/users';
 
   private mockUser: User = {
     id: '1',

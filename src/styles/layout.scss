@@ -1,23 +1,26 @@
 .main {
   min-height: 60%;
   padding: 16px;
-  margin: auto;
-  width: 640px;
-  &.center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    min-height: 60%;
+  margin: 24px auto 15%;
+  overflow: auto;
+}
+// large displays
+@media (min-width: 1280px) {
+  .main{
   }
 }
-
-// big displays
-@media (min-width: 1280px) {
+// medium displays
+@media (min-width:  960px) {
+  .main{
+    width: 640px;
+  }
 }
 
 // small displays
 @media (max-width: 960px) {
+  .main{
+    padding: 8px;
+  }
 }
 
 form {

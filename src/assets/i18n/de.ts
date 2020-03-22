@@ -1,4 +1,11 @@
 export const DE = {
+  general: {
+    save: 'Speichern',
+    confirm: 'Bestätigen',
+    comment: 'Kommentar zufügen',
+    yes: 'Ja',
+    no: 'Nein'
+  },
   navigation: {
     home: 'Start',
     profile: 'Profil',
@@ -8,7 +15,6 @@ export const DE = {
     password: 'Passwort',
     email: 'Email',
     login: 'Einloggen',
-    passwordMinLen: 'Bitte mindestens 8 Zeichen',
     login_success: 'Willkommen',
     login_error: 'Wir konnte Sie leider nicht authentifizieren.',
     form_error: {
@@ -27,7 +33,18 @@ export const DE = {
   },
   shopping: {
     list: {
-      product_name: 'Produktname...'
+      product_name: 'Produktname...',
+      error_amount: 'Bitte mindestens 5 Artikel bestellen.',
+      shopping_bags_amount: 'Gewicht',
+      prefer_cheap: 'Günstige Waren bevorzugen?'
+    },
+    order: 'Jetzt Bestellen'
+  },
+  product: {
+    quantityUnit: {
+      pieces: 'Stück',
+      liter: 'Liter',
+      kilogram: 'Kg'
     }
   }
 };

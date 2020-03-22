@@ -11,7 +11,7 @@ export class ConsumerService {
   ) {
   }
 
-  private dataApiEndpoint = environment.apiUrl + '/consumer';
+  private dataApiEndpoint = environment.apiUrl + '/consumers';
 
   public getConsumerById(consumerId: string): Observable<Consumer> {
     return this.http.get<Consumer>(this.dataApiEndpoint + '/' + consumerId);

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([[this.route.snapshot.queryParams.returnUrl || '/'], {replaceUrl: true}]);
       },
       () => {
-        this.snackbar.open(this.translate.transform('login.login_error'), null, {duration: 3000});
+        this.snackbar.open(this.translate.transform('login.login_error'), null, {duration: 3});
       }
     );
   }

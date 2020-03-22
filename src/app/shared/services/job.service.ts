@@ -11,7 +11,7 @@ export class JobService {
   ) {
   }
 
-  private dataApiEndpoint = environment.apiUrl + '/job';
+  private dataApiEndpoint = environment.apiUrl + '/jobs';
 
   public getJobById(jobId: string): Observable<Job> {
     return this.http.get<Job>(this.dataApiEndpoint + '/' + jobId);

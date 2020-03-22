@@ -13,7 +13,7 @@ export class ShoppingItemService {
     private http: HttpClient,
   ) { }
 
-  private dataApiEndpoint = environment.apiUrl + '/shoppingItem';
+  private dataApiEndpoint = environment.apiUrl + '/shopping-items';
 
   private mockItem: ShoppingItem = {
     id: 'ipsum',

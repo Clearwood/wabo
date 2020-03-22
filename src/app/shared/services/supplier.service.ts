@@ -11,7 +11,7 @@ export class SupplierService {
   ) {
   }
 
-  private dataApiEndpoint = environment.apiUrl + '/supplier';
+  private dataApiEndpoint = environment.apiUrl + '/suppliers';
 
   public getSupplierById(supplierId: string): Observable<Supplier> {
     return this.http.get<Supplier>(this.dataApiEndpoint + '/' + supplierId);
