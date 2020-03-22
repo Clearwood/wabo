@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ShoppingItem, Unit } from 'src/app/models/shoppingItem';
+import { ShoppingItem} from 'src/app/models/shopping-item';
 import { Observable, of } from 'rxjs';
 
 
@@ -13,7 +13,7 @@ export class ShoppingItemService {
     private http: HttpClient,
   ) { }
 
-  private dataApiEndpoint = environment.apiUrl + '/shoppingItem';
+  private dataApiEndpoint = environment.apiUrl + '/shopping-items';
 
   private mockItem: ShoppingItem = {
     id: 'ipsum',
@@ -21,7 +21,6 @@ export class ShoppingItemService {
 
     productId: 'lorem',
     quantity: 1,
-    quantityUnit: Unit.KILOGRAM,
   };
 
   public getShoppingItemById(shoppingItemId: string): Observable<ShoppingItem> {

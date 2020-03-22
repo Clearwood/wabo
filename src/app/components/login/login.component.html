@@ -1,14 +1,17 @@
-<div class="content">
-  <div class="headline" style="margin-top: 20%">Login</div>
-  <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center stretch" (ngSubmit)="onLogin()">
+<app-header></app-header>
+<div class="main center">
+  <div class="headline">Login</div>
+  <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" (ngSubmit)="onLogin()">
     <mat-form-field appearance="fill">
       <mat-label>{{ 'login.email' | translate}}</mat-label>
       <input matInput type="email" formControlName="email" required />
+      <mat-error>{{'login.form_error.email' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ 'login.password' | translate}}</mat-label>
       <input matInput formControlName="password" required />
+      <mat-error>{{'login.form_error.pw' | translate}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type=submit [disabled]="loginForm.invalid">{{'login.login' | translate}}</button>
+    <button mat-raised-button color="primary" type=submit>{{'login.login' | translate}}</button>
   </form>
 </div>

@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
-import {TaskService} from './shared/services/task.service';
 import {HeaderComponent} from './shared/header/header.component';
 import {LoginComponent} from './components/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -29,20 +28,31 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
 import {MatCardModule} from '@angular/material/card';
+import { ShoppingListComponent } from './components/shopping/shopping-list/shopping-list.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+import {ShoppingListService} from './shared/services/shopping-list.service';
+import {MatChipsModule} from '@angular/material/chips';
+import { ShoppingListDialogComponent } from './components/shopping/shopping-list-dialog/shopping-list-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
-    // components
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ProfileComponent,
     HeaderComponent,
-    // shared
     LoginComponent,
     Translate,
     JobListComponent,
     JobDetailComponent,
+    ShoppingListComponent,
+    ShoppingListDialogComponent,
+    CommentDialogComponent,
   ],
   imports: [
     // core
@@ -53,6 +63,7 @@ import {MatCardModule} from '@angular/material/card';
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
@@ -66,14 +77,19 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   providers: [
-    // services
-    TaskService,
     UserService,
     ProductService,
     ShoppingItemService,
+    ShoppingListService,
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,

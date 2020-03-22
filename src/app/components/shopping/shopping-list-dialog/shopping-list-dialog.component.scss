@@ -1,0 +1,24 @@
+@import 'src/styles/variables';
+@import 'src/styles/colors';
+
+.sub-title {
+  text-transform: uppercase;
+  color: $primary;
+  font-weight: bold;
+}
+
+.mat-dialog-content{
+  height: 360px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+}
+
+.greyscale {
+  filter: grayscale(100%);
+}
+
+textarea {
+  height: 100px;
+  width: 100%
+}

@@ -1,0 +1,44 @@
+<app-header componentName="shopping-list"></app-header>
+<div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" class="main">
+  <mat-card *ngFor="let item of items; let i = index" fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+    <div fxFlex="auto">
+      <mat-form-field style="width: 100%" *ngIf="!item.product">
+        <input matInput [placeholder]="'shopping.list.product_name' | translate"
+               type="text" [matAutocomplete]="autoIdentity" [formControl]="productForms[i]">
+        <mat-autocomplete #autoIdentity="matAutocomplete" [displayWith]="displayedValue"
+                          (optionSelected)="onSelectOption($event.option.value, i)">
+          <mat-option *ngFor="let product of productOptions | async" [value]="product">
+            {{product.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-chip-list *ngIf="item.product"><mat-chip color="accent" selected>{{item?.product?.name}}</mat-chip></mat-chip-list>
+    </div>
+    <mat-form-field *ngIf="item?.product" style="width: 48px; font-size: smaller">
+      <mat-select [(ngModel)]="item.quantity">
+        <mat-option *ngFor="let n of [1,2,3,4,5,6]" [value]="n">{{n}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <p *ngIf="item.product">{{'product.quantity_unit.' + item?.product?.quantityUnit | translate}}</p>
+    </div>
+    <div fxLayout="row" fxLayoutGap="8px" style="justify-content: end">
+      <button mat-icon-button color="accent" (click)="onDeleteClick(i)">
+        <mat-icon class="font-size-l">delete</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="onCommentClick(item)">
+        <mat-icon class="font-size-l">comment</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+  <mat-card *ngIf="items.length >= minAmount && allItemsAreValid()" fxLayout="column" fxLayoutAlign="center center"
+            (click)="addListItem()">
+    <div>
+      <mat-icon class="font-size-xl">add</mat-icon>
+    </div>
+  </mat-card>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+    <p *ngIf="isRequiringValidation && !allItemsAreValid()" style="color: red">{{ 'shopping.list.error_amount' | translate}}</p>
+    <button mat-raised-button color="primary" (click)="onSaveClick()">{{'general.confirm' | translate}}</button>
+  </div>
+</div>

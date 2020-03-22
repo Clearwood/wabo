@@ -1,0 +1,23 @@
+@import "../colors.scss";
+
+mat-form-field, mat-chip-list {
+  width: 260px;
+  max-width: 100%;
+
+  &.large {
+    width: 460px;
+  }
+
+  &.small {
+    width: 180px;
+  }
+}
+
+.mat-form-field-invalid *, .mat-focused .mat-form-field-required-marker {
+  color: red !important;
+  caret-color: red !important;
+}
+
+.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: red !important;
+}

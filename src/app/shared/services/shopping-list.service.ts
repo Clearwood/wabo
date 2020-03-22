@@ -11,7 +11,7 @@ export class ShoppingListService {
   ) {
   }
 
-  private dataApiEndpoint = environment.apiUrl + '/shoppingList';
+  private dataApiEndpoint = environment.apiUrl + '/shopping-lists';
 
   public getShoppingListById(shoppingListId: string): Observable<ShoppingList> {
     return this.http.get<ShoppingList>(this.dataApiEndpoint + '/' + shoppingListId);
