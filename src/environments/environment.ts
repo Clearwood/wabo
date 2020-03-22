@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   lang: 'de',
-  apiUrl: 'http://api.callashopper.com/api',
+  apiUrl: 'http://wirvsvirus3app.eba-qmpyxjz7.eu-central-1.elasticbeanstalk.com/api',
   //apiUrl: 'http://ec2-3-125-75-158.eu-central-1.compute.amazonaws.com/api'
 };
 
