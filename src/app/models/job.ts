@@ -16,5 +16,5 @@ export interface Job extends Entity {
   paymentForSupplier?: number;
   deliveryTime?: Date;
   acceptedJobTime?: Date;
-  shoppingListId?: string;
+  shoppingList_id?: string;
 }

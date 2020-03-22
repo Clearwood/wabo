@@ -1,0 +1,22 @@
+@import '../../../styles/colors';
+@import '../../../styles/variables';
+.footer-bar {
+  width: 100%;
+  background-color: $background-color-dark;
+  height: 96px;
+  max-height: 100%;
+  color: $font-color-light;
+  font-size: $font-size-l;
+  bottom: 0;
+  padding: 8px 0 0;
+}
+
+.icon {
+  font-size: 84px;
+}
+
+.icon-row {
+  width: 700px;
+  max-width: 100%;
+  padding-left: 0;
+}

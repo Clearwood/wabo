@@ -41,6 +41,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ShoppingListComponent,
     ShoppingListDialogComponent,
     CommentDialogComponent,
+    FooterComponent,
   ],
   imports: [
     // core

@@ -9,7 +9,9 @@ export const DE = {
   navigation: {
     home: 'Start',
     profile: 'Profil',
-    'shopping-list': 'Bestellung'
+    'shopping-list': 'Bestellung',
+    details: 'Details',
+    jobs: 'Bestellungen'
   },
   login: {
     password: 'Passwort',

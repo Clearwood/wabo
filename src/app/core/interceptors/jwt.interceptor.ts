@@ -18,7 +18,6 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(req).pipe(map(resp => {
-      // @ts-ignore
       if (resp instanceof HttpResponse) {
         return resp.clone({ body: resp.body.data });
       }
