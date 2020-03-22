@@ -2,8 +2,8 @@ export const EN = {
   navigation: {
     home: 'Home',
     profile: 'Profile',
-    accepted: "Accepted",
-  }, 
+    accepted: 'Accepted',
+  },
   general: {
     yes: 'Yes',
     no: 'No'
@@ -28,5 +28,12 @@ export const EN = {
     detail: 'Details',
     shoppingBags: 'Size of purchase',
     hasCooledProduct: 'Contains cooled products',
+  },
+  job_extra: {
+    additionalInfo: 'Additional Info',
+    max_distance: 'Maximal Distance',
+    weight: 'Weight',
+    frozen: 'Can contain frozen products',
+    search: 'Search',
   }
 };
