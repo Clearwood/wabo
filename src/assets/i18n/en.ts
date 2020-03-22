@@ -1,7 +1,7 @@
 export const EN = {
   general: {
     save: 'Save',
-    confirm: 'Confrim',
+    confirm: 'Confirm',
     comment: 'Add Comment',
     yes: 'Yes',
     no: 'No'
