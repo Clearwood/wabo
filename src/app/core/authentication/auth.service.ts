@@ -21,13 +21,13 @@ export class AuthService {
     return this.authToken.value;
   }
 
-  public login(username: string, password: string) {
-    const body = new HttpParams().set('username', username).set('password', password);
-    return this.http.post<Token>(`${environment.apiUrl}/users/token`, body.toString())
+  public login(email: string, password: string) {
+    const body = {email, password};
+    return this.http.post(`${environment.apiUrl}/users/token`, body)
       .pipe(
-        switchMap((token: Token) => {
-          localStorage.setItem('token', token);
-          return this.userService.getUser();
+        switchMap((token: {token}) => {
+          localStorage.setItem('token', token.token);
+          return this.userService.getUserById(token.token);
         }),
         tap(user => {
           localStorage.setItem('user', JSON.stringify(user));
