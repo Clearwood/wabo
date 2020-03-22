@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from 'src/app/models/job';
+import {Job, JobStatus} from 'src/app/models/job';
 import {JobService} from 'src/app/shared/services/job.service';
 import {Consumer} from 'src/app/models/consumer';
 import {ShoppingList} from 'src/app/models/shopping-list';
@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
 import {of, zip} from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 
 interface ViewJob extends Job {
   consumer?: Consumer;
@@ -29,6 +30,7 @@ export class JobListComponent implements OnInit {
     private jobService: JobService,
     private consumerService: ConsumerService,
     private shoppingListService: ShoppingListService,
+    private userService: UserService,
     private router: Router,
   ) {
   }
@@ -38,8 +40,11 @@ export class JobListComponent implements OnInit {
   }
 
   private getJobs() {
-    const params = new HttpParams().set('longitude', '0.0').set('latitude', '0.0');
-    this.jobService.getAllJobs(params).pipe(
+    const body = {
+      'longitude': '52.5041028',
+      'latitude': '13.3372608'
+    };
+    this.jobService.getAllJobs(body).pipe(
       switchMap((jobs: ViewJob[]) => {
         const jobsObs = jobs.map(job => {
           return this.consumerService.getConsumerById(job.consumer_id).pipe(map(consumer => {
@@ -96,8 +101,17 @@ export class JobListComponent implements OnInit {
     this.router.navigate([`jobs/detail/${job.id}`]);
   }
 
-  public onAcceptClick() {
-    console.log('Ellenar ist ein noob');
+  public onAcceptClick(job: Job) {
+    this.userService.getUser().subscribe(user => {
+      console.log('Ellenar ist ein noob');
+      job.status = JobStatus.IN_PROGRESS;
+      job.supplier_id = user.id;
+      job.acceptedJobTime = new Date();
+
+      this.jobService.updateJob(job).subscribe(job =>{
+        this.router.navigate[`jobs/accepted/${job.id}`];
+      });
+    });
   }
 
 }

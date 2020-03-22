@@ -156,7 +156,7 @@ export class JobDetailComponent implements OnInit {
   }
 
   public onAcceptClick() {
-    console.log('Click on accept button.');
+    
   }
 
 }
