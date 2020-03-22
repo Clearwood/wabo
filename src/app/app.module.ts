@@ -50,6 +50,7 @@ import { OrderDetailComponent } from './components/overview/order-detail/order-d
 import {SupplierService} from './shared/services/supplier.service';
 import { JobExtraInfoComponent } from './components/job/job-extra-info/job-extra-info.component';
 import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
+import { LocationService } from './shared/services/location.service';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
     AuthService,
     AuthGuard,
     SupplierService,
+    LocationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
