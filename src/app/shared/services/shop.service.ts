@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Shop, StoreTypes } from 'src/app/models/shop';
-import { Observable, of } from 'rxjs';
+import { Shop } from 'src/app/models/shop';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +14,9 @@ export class ShopService {
 
   private dataApiEndpoint = environment.apiUrl + '/shops';
 
-  private mockShop: Shop = {
-    id: 'dolor',
-
-    streetName: 'Dogstreet',
-    houseNumber: '42',
-    city: 'Berlin',
-    postCode: 27182,
-
-    latitude: 0.0,
-    longitude: 0.0,
-
-    brand: 'WallM',
-    name: 'Clay',
-    type: StoreTypes.SUPERMARKET,
-  };
 
   public getShopById(shopId: string): Observable<Shop> {
-    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shopId}`)
-    return of(this.mockShop);
+    return this.http.get<Shop>(`${this.dataApiEndpoint}/${shopId}`);
   }
 
   public createShop(shop: Shop): Observable<Shop> {

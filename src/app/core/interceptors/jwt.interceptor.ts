@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import {Observable} from 'rxjs';
 import {AuthService} from '../authentication/auth.service';
 import {map} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -10,6 +11,14 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if ((req.method === 'POST' || req.method === 'PUT') && req.body) {
+      req = req.clone ({
+        setHeaders: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(req.body)
+      });
+    }
     if (this.authService.tokenValue) {
       req = req.clone({
         setHeaders: {

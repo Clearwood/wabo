@@ -22,8 +22,7 @@ export class ProductService {
   };
 
   public getProductById(productId: string): Observable<Product> {
-    // return this.http.get<Product>(`${this.dataApiEndpoint}/${productId}`)
-    return of(this.mockProduct);
+    return this.http.get<Product>(`${this.dataApiEndpoint}/${productId}`);
   }
 
   public createProduct(product: Product): Observable<Product> {

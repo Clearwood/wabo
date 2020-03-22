@@ -3,6 +3,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {UserService} from '../../shared/services/user.service';
 import {BehaviorSubject, of} from 'rxjs';
 import {switchMap, tap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
+import {User} from '../../models/user';
 
 type Token = string;
 
@@ -20,16 +22,14 @@ export class AuthService {
     return this.authToken.value;
   }
 
-  public login(username: string, password: string) {
-    const body = new HttpParams().set('username', username).set('password', password);
-    // return this.http.post<Token>(`${environment.apiUrl}/login`, body.toString())
-    return of('1234')
-      .pipe(
-        switchMap((token: Token) => {
-          localStorage.setItem('token', token);
-          return this.userService.getUser();
-        }),
-        tap(user => { localStorage.setItem('user', JSON.stringify(user)); })
+  public login(email: string, password: string) {
+    const body = {email, password};
+    return this.http.post<{token: string, user: User}>(`${environment.apiUrl}/users/token`, body)
+      .pipe(tap((resp: {token: string, user: User}) => {
+          localStorage.setItem('user', JSON.stringify(resp.user));
+          localStorage.setItem('token', resp.token);
+          this.userService.currentUserValue = resp.user;
+        })
       );
   }
 }

@@ -15,17 +15,8 @@ export class ShoppingItemService {
 
   private dataApiEndpoint = environment.apiUrl + '/shopping-items';
 
-  private mockItem: ShoppingItem = {
-    id: 'ipsum',
-    shoppingList_id: 'some_list_id',
-
-    productId: 'lorem',
-    quantity: 1,
-  };
-
   public getShoppingItemById(shoppingItemId: string): Observable<ShoppingItem> {
-    // return this.http.get<Product>(`${this.dataApiEndpoint}/${shoppingItemId}`)
-    return of(this.mockItem);
+    return this.http.get<ShoppingItem>(`${this.dataApiEndpoint}/${shoppingItemId}`);
   }
 
   public createShoppingItem(shoppingItem: ShoppingItem): Observable<ShoppingItem> {
