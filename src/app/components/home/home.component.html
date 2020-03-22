@@ -1,6 +1,22 @@
 <app-header></app-header>
-<div class="main center" fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
-  <button mat-raised-button color="primary" (click)="onViewOverview()" class="button-large">{{'home.overview' | translate}}</button>
-  <button mat-raised-button color="warn" (click)="onSupplyClick()" class="button-large">{{'home.supply' | translate}}</button>
-  <button mat-raised-button color="accent" (click)="onOrderClick()" class="button-large">{{'home.order' | translate}}</button>
+<div class="main" fxLayout="column" fxLayoutGap="32px">
+  <div (click)="onSupplyClick()" fxLayout="column" class="home-card">
+    <div class="icon-image background-warn">
+      <img src="../../../assets/icons/home/home_supply.svg">
+    </div>
+    <div class="card-title">{{'home.supply' | translate}}</div>
+  </div>
+  <div (click)="onOrderClick()" fxLayout="column" class="home-card">
+    <div class="icon-image background-accent">
+      <img src="../../../assets/icons/home/home_order.svg">
+    </div>
+    <div class="card-title">{{'home.order' | translate}}</div>
+  </div>
+  <div (click)="onViewOverview()" fxLayout="column" class="home-card">
+    <div class="icon-image background-primary" fxLayoutAlign="end" fxLayoutGap="32px">
+      <img src="../../../assets/icons/home/home_order.svg" height="120" width="120">
+      <img src="../../../assets/icons/home/home_supply.svg" height="120" width="120">
+    </div>
+    <div class="card-title">{{'home.overview' | translate}}</div>
+  </div>
 </div>

@@ -4,6 +4,14 @@ $font-size-m: 16px;
 $font-size-s: 12px;
 $font-size-xs: 8px;
 
+@media (max-width:  960px){
+  $font-size-xl: 32px;
+  $font-size-l: 16px;
+  $font-size-m: 11px;
+  $font-size-s: 8px;
+  $font-size-xs: 5px;
+}
+
 .font-size-xl {
   font-size: $font-size-xl;
 }

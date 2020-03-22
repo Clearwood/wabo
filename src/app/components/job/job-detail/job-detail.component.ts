@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import { ShoppingItemService } from 'src/app/shared/services/shopping-item.service';
-import { Product } from 'src/app/models/product';
-import { ShoppingItem } from 'src/app/models/shopping-item';
-import { ProductService } from 'src/app/shared/services/product.service';
-import { Consumer } from 'src/app/models/consumer';
-import { ShoppingList } from 'src/app/models/shopping-list';
-import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
-import { ConsumerService } from 'src/app/shared/services/consumer.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ShoppingItemService} from 'src/app/shared/services/shopping-item.service';
+import {Product} from 'src/app/models/product';
+import {ShoppingItem} from 'src/app/models/shopping-item';
+import {ProductService} from 'src/app/shared/services/product.service';
+import {Consumer} from 'src/app/models/consumer';
+import {ShoppingList} from 'src/app/models/shopping-list';
+import {ShoppingListService} from 'src/app/shared/services/shopping-list.service';
+import {ConsumerService} from 'src/app/shared/services/consumer.service';
+import {HttpParams} from '@angular/common/http';
+import {map, switchMap} from 'rxjs/operators';
+import {zip} from 'rxjs';
 
 interface ShoppingListProduct extends ShoppingItem {
   product?: Product;
@@ -33,7 +36,9 @@ export class JobDetailComponent implements OnInit {
     private productService: ProductService,
     private consumerService: ConsumerService,
     private route: ActivatedRoute,
-  ) { }
+    private router: Router,
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
@@ -44,16 +49,16 @@ export class JobDetailComponent implements OnInit {
 
   private getShoppingListProducts(shoppingListId: string) {
     // TODO implement as pipe instead of two subscribes?
-    /*this.shoppingListService.getShoppingListById(shoppingListId).subscribe(shoppingList => {
-      this.shoppingList = shoppingList;
-      this.consumerService.getConsumerById(shoppingList.consumer_id).subscribe(consumer => {
-        this.consumer = consumer;
-      });
+    this.shoppingListService.getShoppingListById(shoppingListId).pipe(
+      switchMap(shoppingList => {
+        this.shoppingList = shoppingList;
+        return this.consumerService.getConsumerById(shoppingList.consumer_id);
+      })).subscribe(consumer => {
+      this.consumer = consumer;
     });
 
     const params = new HttpParams().set('shoppingListId', shoppingListId);
     this.shoppingItemService.getAllShoppingItem(params).pipe(
-
       switchMap((items: ShoppingListProduct[]) => {
         const shoppingOps = items.map(item => {
           return this.productService.getProductById(item.productId).pipe(map(product => {
@@ -66,7 +71,7 @@ export class JobDetailComponent implements OnInit {
       })
     ).subscribe(shoppingListProducts => {
       this.shoppingListProducts = shoppingListProducts;
-    });*/
+    });
 
     this.shoppingListProducts = [
       {
@@ -130,6 +135,10 @@ export class JobDetailComponent implements OnInit {
         }
       },
     ];
+  }
+
+  public onBackClick() {
+    this.router.navigate(['jobs']);
   }
 
   public onAcceptClick() {

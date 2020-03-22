@@ -3,6 +3,7 @@
   padding: 16px;
   margin: 24px auto 15%;
   overflow: auto;
+  max-height: 80%;
 }
 // large displays
 @media (min-width: 1280px) {
@@ -19,7 +20,6 @@
 // small displays
 @media (max-width: 960px) {
   .main{
-    padding: 8px;
   }
 }
 

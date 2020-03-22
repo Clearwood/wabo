@@ -1,35 +1,36 @@
-<mat-card class="fullscreen">
-
+<app-header componentName="details"></app-header>
+  <mat-card class="main">
     <mat-card-header>
-        <mat-card-header>
-            <mat-card-title>{{consumer?.user?.firstName}} {{consumer?.user?.lastName}}</mat-card-title>
-            <mat-card-subtitle>{{'health.' + consumer?.user?.healthStatus | translate}}</mat-card-subtitle>
-        </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>{{consumer?.user?.firstName}} {{consumer?.user?.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{'health.' + consumer?.user?.healthStatus | translate}}</mat-card-subtitle>
+      </mat-card-header>
     </mat-card-header>
 
     <mat-card-content>
 
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center top" fxLayoutAlign.xs="center stretch">
-            <div style="width:100%;height:100%">
-                <p>{{'user.street' | translate}}: {{consumer?.user?.streetName}}, {{consumer?.user?.houseNumber}}</p>
-                <p>{{'user.postCode' | translate}}: {{consumer?.user?.postCode}}, {{consumer?.user?.city}}</p>
-                <p>{{'user.addressAddition' | translate}}: {{consumer?.user?.extraAddressInformation}}</p>
-                <p>{{'user.phone' | translate}}: {{consumer?.user?.phoneNumber}}</p>
-                <p>{{'job_list.shoppingBags' | translate}}: {{shoppingList?.shoppingBagsAmount}}</p>
-                <p>{{'job_list.hasCooledProduct' | translate}}: {{shoppingList?.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
-            </div>
-
-            <div style="width:100%;height:100%">
-                <mat-list class="list-container">
-                    <mat-list-item *ngFor="let shoppingListProduct of shoppingListProducts">
-                            {{shoppingListProduct?.product?.name}}
-                    </mat-list-item>
-                </mat-list>        
-            </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center top" fxLayoutAlign.xs="center stretch">
+        <div style="width:100%;height:100%">
+          <p>{{'user.street' | translate}}: {{consumer?.user?.streetName}}, {{consumer?.user?.houseNumber}}</p>
+          <p>{{'user.postCode' | translate}}: {{consumer?.user?.postCode}}, {{consumer?.user?.city}}</p>
+          <p>{{'user.addressAddition' | translate}}: {{consumer?.user?.extraAddressInformation}}</p>
+          <p>{{'user.phone' | translate}}: {{consumer?.user?.phoneNumber}}</p>
+          <p>{{'job_list.shoppingBags' | translate}}: {{shoppingList?.shoppingBagsAmount}}</p>
+          <p>{{'job_list.hasCooledProduct' | translate}}: {{shoppingList?.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
         </div>
 
-        <div mat-actions align="end">
-            <button mat-button (click)="onAcceptClick()">{{'job_list.accept' | translate}}</button>
+        <div style="width:100%;height:100%">
+          <mat-list class="list-container">
+            <mat-list-item *ngFor="let shoppingListProduct of shoppingListProducts">
+              {{shoppingListProduct?.product?.name}}
+            </mat-list-item>
+          </mat-list>
         </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" fxLayoutAlign="end center">
+        <button mat-raised-button color="warn" (click)="onBackClick()">{{'job_list.back' | translate}}</button>
+        <button mat-raised-button color="warn" (click)="onAcceptClick()">{{'job_list.accept' | translate}}</button>
+      </div>
     </mat-card-content>
-</mat-card>
+  </mat-card>

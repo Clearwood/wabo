@@ -2,7 +2,6 @@
 @import './styles/colors.scss';
 @import './styles/headlines.scss';
 @import './styles/layout.scss';
-@import './styles/images.scss';
 @import './styles/buttons.scss';
 @import './styles/material.scss';
 @import './styles/variables.scss';
@@ -14,10 +13,15 @@ html, body {
   color: $font-color;
   background-color: $background-color;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow: hidden;
   * {
     max-width: 100% !important;
   }
 }
+div {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .mat-body, .mat-body-1, .mat-typography {
   font: 400 16px/24px Roboto, "Helvetica Neue", sans-serif;
 }

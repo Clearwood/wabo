@@ -9,7 +9,9 @@ export const DE = {
   navigation: {
     home: 'Start',
     profile: 'Profil',
-    'shopping-list': 'Bestellung'
+    'shopping-list': 'Bestellung',
+    details: 'Details',
+    jobs: 'Bestellungen'
   },
   login: {
     password: 'Passwort',
@@ -23,7 +25,7 @@ export const DE = {
     }
   },
   home: {
-    overview: 'Übersicht Aufträge',
+    overview: 'Auftragsübersicht',
     order: 'Bestellen',
     supply: 'Liefern',
   },
@@ -42,6 +44,7 @@ export const DE = {
   },
   job_list: {
     accept: 'Akzeptieren',
+    back: "Zurück",
     detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',
