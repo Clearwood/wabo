@@ -1,30 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ShoppingItemService} from 'src/app/shared/services/shopping-item.service';
-import {Product} from 'src/app/models/product';
-import {ShoppingItem} from 'src/app/models/shopping-item';
-import {ProductService} from 'src/app/shared/services/product.service';
-import {Consumer} from 'src/app/models/consumer';
-import {ShoppingList} from 'src/app/models/shopping-list';
-import {ShoppingListService} from 'src/app/shared/services/shopping-list.service';
-import {ConsumerService} from 'src/app/shared/services/consumer.service';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ShoppingItem } from 'src/app/models/shopping-item';
+import { ShoppingList } from 'src/app/models/shopping-list';
+import { Consumer } from 'src/app/models/consumer';
+import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
+import { ShoppingItemService } from 'src/app/shared/services/shopping-item.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
 import {zip} from 'rxjs';
-import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/shared/services/job.service';
+import { Job } from 'src/app/models/job';
 
 interface ShoppingListProduct extends ShoppingItem {
   product?: Product;
 }
 
-
 @Component({
-  selector: 'app-job-detail',
-  templateUrl: './job-detail.component.html',
-  styleUrls: ['./job-detail.component.scss']
+  selector: 'app-job-accepted',
+  templateUrl: './job-accepted.component.html',
+  styleUrls: ['./job-accepted.component.scss']
 })
-export class JobDetailComponent implements OnInit {
+export class JobAcceptedComponent implements OnInit {
 
   private jobId: string;
   private job: Job;
@@ -32,6 +31,7 @@ export class JobDetailComponent implements OnInit {
   private shoppingListID: string;
   public shoppingList: ShoppingList;
   public shoppingListProducts: ShoppingListProduct[];
+
   public consumer: Consumer;
 
   constructor(
@@ -69,6 +69,7 @@ export class JobDetailComponent implements OnInit {
       })).subscribe(consumer => {
       this.consumer = consumer;
     });
+
     const params = new HttpParams().set('shoppingListId', shoppingListId);
     this.shoppingItemService.getAllShoppingItem(params).pipe(
       switchMap((items: ShoppingListProduct[]) => {
@@ -86,12 +87,9 @@ export class JobDetailComponent implements OnInit {
     });
   }
 
-  public onBackClick() {
-    this.router.navigate(['jobs']);
-  }
-
-  public onAcceptClick() {
-
+  public onDeliveredClick() {
+    // Implement check if the purchases were really delivered
+    this.router.navigate(['home']);
   }
 
 }

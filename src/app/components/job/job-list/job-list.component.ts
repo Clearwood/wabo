@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Job} from 'src/app/models/job';
+import {Job, JobStatus} from 'src/app/models/job';
 import {JobService} from 'src/app/shared/services/job.service';
 import {Consumer} from 'src/app/models/consumer';
 import {ShoppingList} from 'src/app/models/shopping-list';
@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
 import {of, zip} from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
+import { SupplierService } from 'src/app/shared/services/supplier.service';
 
 interface ViewJob extends Job {
   consumer?: Consumer;
@@ -28,7 +30,9 @@ export class JobListComponent implements OnInit {
   constructor(
     private jobService: JobService,
     private consumerService: ConsumerService,
+    private supplierService: SupplierService,
     private shoppingListService: ShoppingListService,
+    private userService: UserService,
     private router: Router,
   ) {
   }
@@ -38,7 +42,7 @@ export class JobListComponent implements OnInit {
   }
 
   private getJobs() {
-    const params = new HttpParams().set('longitude', '0.0').set('latitude', '0.0');
+    const params = new HttpParams().set('longitude', '13.3372608').set('latitude', '52.5041028');
     this.jobService.getAllJobs(params).pipe(
       switchMap((jobs: ViewJob[]) => {
         const jobsObs = jobs.map(job => {
@@ -60,44 +64,27 @@ export class JobListComponent implements OnInit {
       }),
     ).subscribe(jobs => {
       this.jobs = jobs;
-      this.jobs = [
-        {
-          shoppingList_id: 'DieAntwortAufDieFrage',
-          consumer: {
-            user: {
-              firstName: 'Johnny',
-              lastName: 'Joe',
-              healthStatus: HealthStatus.QUARANTINE,
-            }
-          },
-          shoppingList: {
-            shoppingBagsAmount: 3,
-            hasCooledProduct: true,
-          }
-        },
-        {
-          consumer: {
-            user: {
-              firstName: 'Eve',
-              lastName: 'A.',
-              healthStatus: HealthStatus.HEALTHY,
-            }
-          },
-          shoppingList: {
-            shoppingBagsAmount: 10,
-            hasCooledProduct: false,
-          }
-        }
-      ];
+      console.log(this.jobs);
     });
   }
 
   public onDetailClick(job: Job) {
-    this.router.navigate([`jobs/detail/${job.shoppingList_id}`]);
+    this.router.navigate([`jobs/detail/${job.id}`]);
   }
 
-  public onAcceptClick() {
-    console.log('Ellenar ist ein noob');
+  // TODO: Remove consumer and shopping list from job obejct
+  public onAcceptClick(job: Job) {
+    const params = new HttpParams().set("user_id", this.userService.currentUserValue.id);
+    this.supplierService.getAllSuppliers(params).subscribe(suppliers => {
+      if(suppliers[0]) {
+        job.status = JobStatus.IN_PROGRESS;
+        job.supplier_id = suppliers[0].id;
+        job.acceptedJobTime = new Date();
+        this.jobService.updateJob(job).subscribe(job =>{
+          this.router.navigate([`jobs/accepted/${job.id}`]);
+        });
+      }
+    });
   }
 
 }

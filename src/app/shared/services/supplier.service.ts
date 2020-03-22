@@ -28,7 +28,7 @@ export class SupplierService {
   public getSupplierById(supplierId: string): Observable<Supplier> {
     return this.http.get<Supplier>(this.dataApiEndpoint + '/' + supplierId);
   }
-
+  
   public createSupplier(supplier: Supplier): Observable<Supplier> {
     return this.http.post<Supplier>(this.dataApiEndpoint, supplier);
   }

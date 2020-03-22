@@ -41,7 +41,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './shared/footer/footer.component';
+import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
 import { OrderListComponent } from './components/overview/order-list/order-list.component';
 import { OrderDetailComponent } from './components/overview/order-detail/order-detail.component';
 import {SupplierService} from './shared/services/supplier.service';
@@ -57,6 +59,7 @@ import {SupplierService} from './shared/services/supplier.service';
     Translate,
     JobListComponent,
     JobDetailComponent,
+    JobAcceptedComponent,
     ShoppingListComponent,
     ShoppingListDialogComponent,
     CommentDialogComponent,
@@ -73,6 +76,7 @@ import {SupplierService} from './shared/services/supplier.service';
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'jobs/accepted/:id', component: JobAcceptedComponent, canActivate: [AuthGuard]},
       {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
       {path: 'overview/list', component: OrderListComponent, canActivate: [AuthGuard]},
       {path: 'overview/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
@@ -99,6 +103,7 @@ import {SupplierService} from './shared/services/supplier.service';
     MatSlideToggleModule,
     MatIconModule,
     MatListModule,
+    MatExpansionModule,
   ],
   providers: [
     UserService,
@@ -110,6 +115,7 @@ import {SupplierService} from './shared/services/supplier.service';
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,
+    SupplierService,
     AuthService,
     AuthGuard,
     SupplierService,

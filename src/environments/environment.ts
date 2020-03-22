@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   lang: 'de',
-  apiUrl: 'http://90590236.ngrok.io/api'
+  apiUrl: 'http://90590236.ngrok.io/api',
+  //apiUrl: 'http://ec2-3-125-75-158.eu-central-1.compute.amazonaws.com/api'
 };
 
 /*

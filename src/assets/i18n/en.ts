@@ -2,6 +2,7 @@ export const EN = {
   navigation: {
     home: 'Home',
     profile: 'Profile',
+    accepted: "Accepted",
   }, 
   general: {
     yes: 'Yes',
@@ -21,8 +22,9 @@ export const EN = {
     healthy: 'Healthy',
   },
   job_list: {
-    accept: "Accept",
-    back: "Back",
+    accept: 'Accept',
+    deliver: 'Delivered',
+    back: 'Back',
     detail: 'Details',
     shoppingBags: 'Size of purchase',
     hasCooledProduct: 'Contains cooled products',

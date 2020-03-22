@@ -10,6 +10,7 @@ export const DE = {
     home: 'Start',
     profile: 'Profil',
     'shopping-list': 'Bestellung',
+    accepted: "Akzeptiert",
     details: 'Details',
     jobs: 'Bestellungen'
   },
@@ -45,6 +46,7 @@ export const DE = {
   job_list: {
     accept: 'Akzeptieren',
     back: 'Zurück',
+    deliver: 'Abgeliefert',
     detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',
