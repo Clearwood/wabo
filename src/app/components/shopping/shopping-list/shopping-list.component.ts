@@ -112,15 +112,14 @@ export class ShoppingListComponent implements OnInit {
       filter(list => list),
       switchMap((list: ShoppingList) => {
         shoppingList = list;
-        const params = new HttpParams().set('user_id', userId);
-        return this.consumerService.getAllConsumers(params);
+        if (this.consumerService.currentConsumer) {
+          return of(this.consumerService.currentConsumer);
+        }
+        return this.consumerService.createConsumer({user_id: userId});
       }),
-      switchMap(consumers => {
-        return consumers.length ? of(consumers[0]) : this.consumerService.createConsumer({user_id: userId});
-      }),
-      tap(consumer => this.consumerService.currentConsumer = consumer),
-      switchMap(consumers => {
-        shoppingList.consumer_id = consumers.id;
+      switchMap(consumer => {
+        this.consumerService.currentConsumer = consumer;
+        shoppingList.consumer_id = consumer.id;
         return this.shoppingListService.createShoppingList(shoppingList);
       }),
       switchMap(createdList => {

@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="main center">
+  <div class="headline">Sign up</div>
+  <form [formGroup]="signUpForm" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px"
+        (ngSubmit)="onSignUp()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'user.first_name' | translate}}</mat-label>
+      <input matInput type="text" formControlName="firstName" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'login.email' | translate}}</mat-label>
+      <input matInput type="email" formControlName="email" required/>
+      <mat-error>{{'login.form_error.email' | translate}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'login.password' | translate}}</mat-label>
+      <input matInput type="password" formControlName="password" required/>
+      <mat-error>{{'login.form_error.pw' | translate}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'login.health_status' | translate}}</mat-label>
+      <mat-select formControlName="healthStatus">
+        <mat-option *ngFor="let state of [healthEnum.HEALTHY, healthEnum.QUARANTINE, healthEnum.SICK]" [value]="state">
+          {{('health.' + state) | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+      <mat-label>{{ 'login.risk_group' | translate}}?</mat-label>
+      <mat-slide-toggle (change)="onToggleRiskGroup($event)">
+        {{(signUpForm.get('isRiskGroup').value ? 'general.yes' : 'general.no') | translate}}
+      </mat-slide-toggle>
+    </div>
+
+    <button mat-raised-button color="primary" type=submit>{{'login.login' | translate}}</button>
+  </form>
+</div>

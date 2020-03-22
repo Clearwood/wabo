@@ -12,6 +12,9 @@
       <input matInput type="password" formControlName="password" required />
       <mat-error>{{'login.form_error.pw' | translate}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type=submit>{{'login.login' | translate}}</button>
+    <div fxLayout="row" fxLayoutAlign="flex-end center">
+      <button mat-button color="primary" type="button" (click)="onSignUp()">Sign up</button>
+      <button mat-raised-button color="primary" type=submit>{{'login.login' | translate}}</button>
+    </div>
   </form>
 </div>

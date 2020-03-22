@@ -5,16 +5,16 @@ import {ShoppingListService} from '../../../shared/services/shopping-list.servic
 import {ConsumerService} from '../../../shared/services/consumer.service';
 import {Job} from '../../../models/job';
 import {ShoppingList} from '../../../models/shopping-list';
-import {map, switchMap} from 'rxjs/operators';
-import {zip} from 'rxjs';
+import {filter, map, switchMap} from 'rxjs/operators';
+import {of, zip} from 'rxjs';
 import {UserService} from '../../../shared/services/user.service';
 import {SupplierService} from '../../../shared/services/supplier.service';
 import {Router} from '@angular/router';
+import {User} from '../../../models/user';
 
 interface ExtendedJob extends Job {
   shoppingList?: ShoppingList;
-  isUserSupplier?: boolean;
-  isUserConsumer?: boolean;
+  customer?: User;
 }
 
 @Component({
@@ -25,6 +25,8 @@ interface ExtendedJob extends Job {
 export class OrderListComponent implements OnInit {
 
   public jobs: ExtendedJob[];
+  public jobsSupply: ExtendedJob[];
+  public jobsConsume: ExtendedJob[];
   public consumerId: string;
   private supplierId: string;
 
@@ -37,40 +39,50 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const params = new HttpParams().set('user_id', this.userService.currentUserValue.id);
-    this.supplierService.getAllSuppliers(params).pipe(
-      switchMap(suppliers => {
-        if (suppliers.length) {
-          this.supplierId = suppliers[0].id;
-        }
-        return this.consumerService.getAllConsumers(params);
-      }),
-      switchMap(consumers => {
-        if (consumers.length) {
-          this.consumerId = consumers[0].id;
-        }
+    const jobObs = [];
+    const supplyJobs = this.supplierService.currentSupplierSubject.pipe(
+      filter(supplier => !!supplier),
+      switchMap(supplier => {
+        const params = new HttpParams().set('supplier_id', supplier.id);
         return this.jobService.getAllJobs(params);
       }),
-      switchMap(jobs => {
-        const extendedJobs = jobs.map((job: ExtendedJob) => {
-          job.isUserSupplier = job.supplier_id && job.supplier_id === this.supplierId;
-          job.isUserConsumer = job.consumer_id && job.consumer_id === this.consumerId;
-          return this.shoppingListService.getShoppingListById(job.shoppingList_id).pipe(
-            map(shoppingList => {
-              job.shoppingList = shoppingList;
+      switchMap((jobs: Job[]) => {
+        return jobs.map((job: ExtendedJob) => {
+          if (job.consumer_id) {
+            this.consumerService.getConsumerById(job.consumer_id).pipe(map(consumer => {
+              job.customer = consumer;
               return job;
-            })
-          );
+            }));
+          } else {
+            return of(job);
+          }
         });
-        return zip(...extendedJobs);
+      }));
+    jobObs.push(supplyJobs);
+    const orderedJob = this.consumerService.currentConsumerSubject.pipe(
+      filter(consumer => !!consumer),
+      switchMap(consumer => {
+        const params = new HttpParams().set('supplier_id', consumer.id);
+        return this.jobService.getAllJobs(params);
+      }),
+      switchMap((jobs: Job[]) => {
+        return jobs.map((job: ExtendedJob) => {
+          if (job.supplier_id) {
+            this.supplierService.getSupplierById(job.supplier_id).pipe(map(supplier => {
+              job.customer = supplier;
+              return job;
+            }));
+          } else {
+            return of(job);
+          }
+        });
       })
-    ).subscribe(jobs => {
-      this.jobs = jobs;
-    });
+    );
+    jobObs.push(orderedJob);
   }
 
   onDetailsClick(jobId: string) {
-    this.router.navigate(['overview', 'details', jobId]);
+    this.router.navigate(['overview', 'detail', jobId]);
   }
 
 }

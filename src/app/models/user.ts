@@ -17,7 +17,7 @@ export interface User extends Entity {
   postCode?: number;
   extraAddressInformation?: string;
   healthStatus?: HealthStatus;
-  riskGroup?: boolean;
+  isRiskGroup?: boolean;
   phoneNumber?: string;
   password?: string;
   emailVerifiedAt?: Date;

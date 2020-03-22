@@ -2,8 +2,8 @@ export const EN = {
   navigation: {
     home: 'Home',
     profile: 'Profile',
-    accepted: "Accepted",
-  }, 
+    accepted: 'Accepted',
+  },
   general: {
     yes: 'Yes',
     no: 'No'

@@ -10,7 +10,7 @@ export const DE = {
     home: 'Start',
     profile: 'Profil',
     'shopping-list': 'Bestellung',
-    accepted: "Akzeptiert",
+    accepted: 'Akzeptiert',
     details: 'Details',
     jobs: 'Bestellungen'
   },
@@ -20,10 +20,13 @@ export const DE = {
     login: 'Einloggen',
     login_success: 'Willkommen',
     login_error: 'Wir konnte Sie leider nicht authentifizieren.',
+    health_status: 'Gesundheitszustand',
+    risk_group: 'Risikogruppe',
+    logout: 'Ausloggen',
     form_error: {
       pw: 'Passwörter sollten mindestens 4 Zeichen lang sein',
       email: 'Bitte eine gültige Email eingebe'
-    }
+    },
   },
   home: {
     overview: 'Auftragsübersicht',
