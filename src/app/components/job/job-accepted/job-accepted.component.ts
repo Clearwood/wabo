@@ -11,6 +11,8 @@ import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
 import {zip} from 'rxjs';
+import { JobService } from 'src/app/shared/services/job.service';
+import { Job } from 'src/app/models/job';
 
 interface ShoppingListProduct extends ShoppingItem {
   product?: Product;
@@ -23,6 +25,9 @@ interface ShoppingListProduct extends ShoppingItem {
 })
 export class JobAcceptedComponent implements OnInit {
 
+  private jobId: string;
+  private job: Job;
+
   private shoppingListID: string;
   public shoppingList: ShoppingList;
   public shoppingListProducts: ShoppingListProduct[];
@@ -30,23 +35,96 @@ export class JobAcceptedComponent implements OnInit {
   public consumer: Consumer;
 
   constructor(
+    private jobService: JobService,
     private shoppingListService: ShoppingListService,
     private shoppingItemService: ShoppingItemService,
     private productService: ProductService,
     private consumerService: ConsumerService,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
-      this.shoppingListID = param.id;
-      this.getShoppingListProducts(this.shoppingListID);
+      this.jobId = param.id;
+      this.getJob(this.jobId);
     });
   }
 
+  private getJob(jobId: string) {
+    this.jobService.getJobById(jobId).subscribe(job => {
+      this.job = job;
+      this.shoppingListID = job.shoppingList_id;
+      this.getShoppingListProducts(this.shoppingListID);
+    });
+
+    this.shoppingListProducts = this.shoppingListProducts = [
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+    ];
+  }
+
+  // Call this after getting the information for the job; We need the job id for the accept action.
   private getShoppingListProducts(shoppingListId: string) {
-    // TODO implement as pipe instead of two subscribes?
     this.shoppingListService.getShoppingListById(shoppingListId).pipe(
       switchMap(shoppingList => {
         this.shoppingList = shoppingList;
@@ -70,6 +148,11 @@ export class JobAcceptedComponent implements OnInit {
     ).subscribe(shoppingListProducts => {
       this.shoppingListProducts = shoppingListProducts;
     });
+  }
+
+  public onDeliveredClick() {
+    // Implement check if the purchases were really delivered
+    this.router.navigate['home'];
   }
 
 }

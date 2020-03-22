@@ -1,4 +1,43 @@
 <app-header componentName="accepted"></app-header>
-<mat-card>
-    
+<mat-card class="main">
+    <mat-card-header>
+        <mat-card-header>
+            <mat-card-title>{{consumer?.user?.firstName}} {{consumer?.user?.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{'health.' + consumer?.user?.healthStatus | translate}}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center top" fxLayoutAlign.xs="center stretch">
+            <div style="width:100%;height:100%">
+                <h1>Adresse:</h1>
+                <p>{{consumer?.user?.streetName}}, {{consumer?.user?.houseNumber}}</p>
+                <p>{{consumer?.user?.postCode}}, {{consumer?.user?.city}}</p>
+                <p>{{consumer?.user?.extraAddressInformation}}</p>
+                
+                <h1>Details:</h1>
+                <p>{{'user.phone' | translate}}: {{consumer?.user?.phoneNumber}}</p>
+                <p>{{'job_list.shoppingBags' | translate}}: {{shoppingList?.shoppingBagsAmount}}</p>
+                <p>{{'job_list.hasCooledProduct' | translate}}:
+                    {{shoppingList?.hasCooledProduct ? 'general.yes' : 'general.no' | translate}}</p>
+            </div>
+
+            <div style="width:100%;height:100%">
+                <mat-selection-list class="list-container">
+                    <mat-list-option *ngFor="let shoppingListProduct of shoppingListProducts">
+                        <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+                            <p>{{shoppingListProduct?.product?.name}}</p>
+                            <p *ngIf="shoppingListProduct?.quantity">{{shoppingListProduct?.quantity}}x</p>
+                            <p *ngIf="!shoppingListProduct?.quantity">1x</p>
+                        </div>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" fxLayoutAlign="end center">
+            <button mat-raised-button color="warn" (click)="onDeliveredClick()">{{'job_list.deliver' | translate}}</button>
+        </div>
+    </mat-card-content>
 </mat-card>

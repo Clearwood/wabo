@@ -86,6 +86,69 @@ export class JobDetailComponent implements OnInit {
     ).subscribe(shoppingListProducts => {
       this.shoppingListProducts = shoppingListProducts;
     });
+
+    this.shoppingListProducts = this.shoppingListProducts = [
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+      {
+        product: {
+          name: 'Test'
+        }
+      },
+    ];
   }
 
   public onBackClick() {
