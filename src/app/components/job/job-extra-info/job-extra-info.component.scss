@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+@import 'src/styles/colors';
+
+.sub-title {
+    text-transform: uppercase;
+    color: $primary;
+    font-weight: bold;
+}
+
+.greyscale {
+    filter: grayscale(100%);
+}

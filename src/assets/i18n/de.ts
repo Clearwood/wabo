@@ -59,6 +59,13 @@ export const DE = {
       5: 'sehr groß',
     },
   },
+  job_extra: {
+    additionalInfo: 'Weitere Angaben',
+    max_distance: 'Maximale Distanz',
+    weight: 'Gewicht',
+    frozen: 'Kann gefrohrenes enthalten',
+    search: 'Suchen',
+  },
   shopping: {
     list: {
       product_name: 'Produktname...',

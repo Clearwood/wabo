@@ -42,11 +42,14 @@ import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.c
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FooterComponent } from './shared/footer/footer.component';
 import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
 import { OrderListComponent } from './components/overview/order-list/order-list.component';
 import { OrderDetailComponent } from './components/overview/order-detail/order-detail.component';
 import {SupplierService} from './shared/services/supplier.service';
+import { JobExtraInfoComponent } from './components/job/job-extra-info/job-extra-info.component';
+import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,8 @@ import {SupplierService} from './shared/services/supplier.service';
     FooterComponent,
     OrderListComponent,
     OrderDetailComponent,
+    JobExtraInfoComponent,
+    DistanceLablePipe,
   ],
   imports: [
     // core
@@ -74,7 +79,8 @@ import {SupplierService} from './shared/services/supplier.service';
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-      {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
+      {path: 'jobs', component: JobExtraInfoComponent, canActivate: [AuthGuard]},
+      {path: 'jobs/list', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
       {path: 'jobs/accepted/:id', component: JobAcceptedComponent, canActivate: [AuthGuard]},
       {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
@@ -104,6 +110,7 @@ import {SupplierService} from './shared/services/supplier.service';
     MatIconModule,
     MatListModule,
     MatExpansionModule,
+    MatCheckboxModule,
   ],
   providers: [
     UserService,

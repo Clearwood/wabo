@@ -1,0 +1,46 @@
+<app-header componentName="jobs"></app-header>
+<mat-card class="main">
+
+    <mat-card-header>
+        <mat-card-title>{{'job_extra.additionalInfo' | translate}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+
+            <div fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+                <div class="sub-title">{{'job_extra.max_distance' | translate}}: {{distanceInKm | distanceLable}}</div>
+                <div fxLayout="column">
+                    <mat-slider thumbLabel
+                                [displayWith]="formatLabel" 
+                                min="1" 
+                                max="15"
+                                step="1"
+                                tickInterval="1"
+                                [(ngModel)]="distanceInKm" >
+                    </mat-slider>
+                </div>
+            </div>
+
+            <div fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+                <div class="sub-title">{{'job_extra.weight' | translate}}</div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                        <img *ngFor="let i of [2,3,4,5,6]" [ngClass]="shoppingBagsAmount >= i ? '' : 'greyscale'"
+                            src="../../../../assets/icons/shopping/shopping-bag.svg" height="30" width="30"
+                            style="margin: auto">
+                    </div>
+                    <mat-slider min="1" max="6" step="1" [(ngModel)]="shoppingBagsAmount" tickInterval="1">
+                    </mat-slider>
+                </div>
+            </div>
+
+            <mat-checkbox labelPosition="before" [(ngModel)]="hasFrostedProducts" >{{'job_extra.frozen' | translate}}</mat-checkbox>
+
+        </div>
+        
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" fxLayoutAlign="flex-end center">
+            <button mat-raised-button color="warn" (click)="onSearchClick()">{{'job_extra.search' | translate}}</button>
+        </div>
+    </mat-card-content>
+</mat-card>

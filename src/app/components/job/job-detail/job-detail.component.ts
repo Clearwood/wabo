@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ShoppingItemService} from 'src/app/shared/services/shopping-item.service';
-import {Product} from 'src/app/models/product';
-import {ShoppingItem} from 'src/app/models/shopping-item';
-import {ProductService} from 'src/app/shared/services/product.service';
-import {Consumer} from 'src/app/models/consumer';
-import {ShoppingList} from 'src/app/models/shopping-list';
-import {ShoppingListService} from 'src/app/shared/services/shopping-list.service';
-import {ConsumerService} from 'src/app/shared/services/consumer.service';
-import {HttpParams} from '@angular/common/http';
-import {map, switchMap} from 'rxjs/operators';
-import {zip} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ShoppingItemService } from 'src/app/shared/services/shopping-item.service';
+import { Product } from 'src/app/models/product';
+import { ShoppingItem } from 'src/app/models/shopping-item';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { Consumer } from 'src/app/models/consumer';
+import { ShoppingList } from 'src/app/models/shopping-list';
+import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
+import { ConsumerService } from 'src/app/shared/services/consumer.service';
+import { HttpParams } from '@angular/common/http';
+import { map, switchMap } from 'rxjs/operators';
+import { zip } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/shared/services/job.service';
 
@@ -53,31 +53,27 @@ export class JobDetailComponent implements OnInit {
   }
 
   private getJob(jobId: string) {
-    this.jobService.getJobById(jobId).subscribe(job => {
-      this.job = job;
-      this.shoppingListID = job.shoppingList_id;
-      this.getShoppingListProducts(this.shoppingListID);
-    });
-  }
-
-  // Call this after getting the information for the job; We need the job id for the accept action.
-  private getShoppingListProducts(shoppingListId: string) {
-    this.shoppingListService.getShoppingListById(shoppingListId).pipe(
+    this.jobService.getJobById(jobId).pipe(
+      switchMap((job: Job) => {
+        this.job = job;
+        this.shoppingListID = job.shoppingList_id;
+        return this.shoppingListService.getShoppingListById(this.shoppingListID)
+      }),
       switchMap(shoppingList => {
         this.shoppingList = shoppingList;
         return this.consumerService.getConsumerById(shoppingList.consumer_id);
-      })).subscribe(consumer => {
-      this.consumer = consumer;
-    });
-    const params = new HttpParams().set('shoppingListId', shoppingListId);
-    this.shoppingItemService.getAllShoppingItem(params).pipe(
+      }),
+      switchMap(consumer => {
+        this.consumer = consumer;
+        const params = new HttpParams().set('shoppingListId', this.shoppingListID);
+        return this.shoppingItemService.getAllShoppingItem(params);
+      }),
       switchMap((items: ShoppingListProduct[]) => {
         const shoppingOps = items.map(item => {
           return this.productService.getProductById(item.product_id).pipe(map(product => {
             item.product = product;
             return item;
           }));
-
         });
         return zip(...shoppingOps);
       })
