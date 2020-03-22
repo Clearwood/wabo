@@ -6,14 +6,15 @@ export enum JobStatus {
   DONE = 'done',
 }
 
-export interface Job  extends Entity {
+export interface Job extends Entity {
   status?: JobStatus;
   supplier_id?: string;
   consumer_id?: string;
   shop_id?: string;
   receipt?: string;
-  moneyForShop?: number;
-  moneyForSupplier?: number;
+  paymentForShop?: number;
+  paymentForSupplier?: number;
   deliveryTime?: Date;
   acceptedJobTime?: Date;
+  shoppingListId?: string;
 }

@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
 import { UserService } from './shared/services/user.service';
 import { ProductService } from './shared/services/product.service';
 import { ShoppingItemService } from './shared/services/shopping-item.service';
@@ -27,6 +28,8 @@ import { JobDetailComponent } from './components/job/job-detail/job-detail.compo
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
+import { JobService } from './shared/services/job.service';
+import { ConsumerService } from './shared/services/consumer.service';
 import {MatCardModule} from '@angular/material/card';
 import { ShoppingListComponent } from './components/shopping/shopping-list/shopping-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -83,13 +86,17 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatChipsModule,
     MatDialogModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [
     UserService,
     ProductService,
-    ShoppingItemService,
+    JobService,
+    ConsumerService,
     ShoppingListService,
+    ShoppingItemService,
     ShopService,
     ShopXProductsService,
     ShopFeedbackService,

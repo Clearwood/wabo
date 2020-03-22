@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
 import {ShoppingList} from '../../../models/shopping-list';
 
 @Component({
@@ -11,7 +11,7 @@ export class ShoppingListDialogComponent implements OnInit {
 
   public shoppingList: ShoppingList;
 
-  constructor(public dialogRef: MatDialogRef<ShoppingListDialogComponent>) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.shoppingList = {

@@ -4,7 +4,7 @@ export interface ShoppingList extends Entity {
   consumer_id?: string;
   preferCheapProducts?: boolean;
   shopType?: string;
-  hasCooledProducts?: boolean;
+  hasCooledProduct?: boolean;
   shoppingBagsAmount?: number;
   comment?: string;
 }

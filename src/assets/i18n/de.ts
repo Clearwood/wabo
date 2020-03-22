@@ -29,6 +29,22 @@ export const DE = {
   },
   user: {
     first_name: 'Vorname',
+    last_name: 'Nachname',
+    street: 'Straße',
+    postCode: 'Postleitzahl, Stadt',
+    addressAddition: 'Adresszusatz',
+    phone: 'Telefonnummer',
+  },
+  health: {
+    quarantine: 'Quarantäne',
+    sick: 'Krank',
+    healthy: 'Gesund'
+  },
+  job_list: {
+    accept: 'Akzeptieren',
+    detail: 'Details',
+    shoppingBags: 'Größe des Einkaufs',
+    hasCooledProduct: 'Besitzt gekühlte Produkte',
     last_name: 'Nachname'
   },
   shopping: {
