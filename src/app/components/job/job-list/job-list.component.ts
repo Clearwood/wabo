@@ -93,7 +93,7 @@ export class JobListComponent implements OnInit {
   }
 
   public onDetailClick(job: Job) {
-    this.router.navigate([`jobs/detail/${job.shoppingList_id}`]);
+    this.router.navigate([`jobs/detail/${job.id}`]);
   }
 
   public onAcceptClick() {
