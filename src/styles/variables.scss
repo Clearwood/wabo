@@ -1,5 +1,26 @@
-$font-size-xl: 24px;
-$font-size-l: 18px;
-$font-size-m: 12px;
-$font-size-s: 8px;
-$font-size-xs: fpx;
+$font-size-xl: 48px;
+$font-size-l: 32px;
+$font-size-m: 16px;
+$font-size-s: 12px;
+$font-size-xs: 8px;
+
+.font-size-xl {
+  font-size: $font-size-xl;
+}
+
+.font-size-l {
+  font-size: $font-size-l;
+}
+
+.font-size-m {
+  font-size: $font-size-m;
+}
+
+.font-size-s {
+  font-size: $font-size-s;
+}
+
+.font-size-xs {
+  font-size: $font-size-xs;
+}
+

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   onOrderClick() {
+    this.router.navigate(['shopping-list']);
   }
 
   onSupplyClick() {

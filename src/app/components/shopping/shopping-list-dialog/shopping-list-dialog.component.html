@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Neuer Einkauf</h1>
+<div mat-dialog-content fxLayout="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+  <div class="sub-title">{{'shopping.list.shopping_bags_amount' | translate}}</div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <img  *ngFor="let i of [2,3,4,5,6]" [ngClass]="shoppingList.shoppingBagsAmount >= i ? '' : 'greyscale'"
+            src="../../../../assets/icons/shopping/shopping-bag.svg" height="30" width="30" style="margin: auto">
+    </div>
+    <mat-slider min="1" max="6" step="1" [(ngModel)]="shoppingList.shoppingBagsAmount" tickInterval="1"></mat-slider>
+  </div>
+  <div fxLayoutAlign="start" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+    <div class="sub-title" style="font-weight: normal; text-transform: none">{{'shopping.list.prefer_cheap' | translate}}</div>
+    <mat-slide-toggle [(ngModel)]="shoppingList.preferCheapProducts">
+      {{'general.' + (shoppingList.preferCheapProducts ? 'yes' : 'no') | translate}}
+    </mat-slide-toggle>
+  </div>
+  <div class="sub-title">{{'general.comment' | translate}}</div>
+  <mat-form-field appearance="outline" style="width: 100%">
+    <textarea matInput [(ngModel)]="shoppingList.comment"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions fxLayoutAlign="end" style="margin: 8px">
+  <button mat-raised-button color="primary" [mat-dialog-close]="shoppingList">{{'shopping.order' | translate}}</button>
+</div>
+

@@ -13,7 +13,7 @@ export class ProductService {
     private http: HttpClient,
   ) { }
 
-  private dataApiEndpoint = environment.apiUrl + '/product';
+  private dataApiEndpoint = environment.apiUrl + '/products';
 
   private mockProduct: Product = {
     id: 'lorem',

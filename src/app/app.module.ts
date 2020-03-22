@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
-import {TaskService} from './shared/services/task.service';
 import {HeaderComponent} from './shared/header/header.component';
 import {LoginComponent} from './components/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -17,10 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
-
-
 import { UserService } from './shared/services/user.service';
 import { ProductService } from './shared/services/product.service';
 import { ShoppingItemService } from './shared/services/shopping-item.service';
@@ -34,31 +30,44 @@ import {AuthService} from './core/authentication/auth.service';
 import {AuthGuard} from './core/authentication/auth.guard';
 import { JobService } from './shared/services/job.service';
 import { ConsumerService } from './shared/services/consumer.service';
-import { ShoppingListService } from './shared/services/shopping-list.service';
+import {MatCardModule} from '@angular/material/card';
+import { ShoppingListComponent } from './components/shopping/shopping-list/shopping-list.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+import {ShoppingListService} from './shared/services/shopping-list.service';
+import {MatChipsModule} from '@angular/material/chips';
+import { ShoppingListDialogComponent } from './components/shopping/shopping-list-dialog/shopping-list-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
-    // components
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ProfileComponent,
     HeaderComponent,
-    // shared
     LoginComponent,
     Translate,
     JobListComponent,
     JobDetailComponent,
+    ShoppingListComponent,
+    ShoppingListDialogComponent,
+    CommentDialogComponent,
   ],
   imports: [
     // core
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
-      {path: 'profile', component: ProfileComponent},
-      {path: 'jobs', component: JobListComponent},
-      {path: 'jobs/detail/:id', component: JobDetailComponent},
+      {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
+      {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,
@@ -72,11 +81,16 @@ import { ShoppingListService } from './shared/services/shopping-list.service';
     MatSnackBarModule,
     MatIconModule,
     MatCardModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatIconModule,
     MatListModule,
   ],
   providers: [
-    // services
-    TaskService,
     UserService,
     ProductService,
     JobService,

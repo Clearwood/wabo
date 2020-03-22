@@ -10,8 +10,7 @@ export class Translate implements PipeTransform {
 
   public transform(key: string): any {
     const lang = environment.lang === 'de' ? DE : EN;
-    console.log(key)
     const keys = key.split('.');
-    return keys.reduce((acc, curr) => acc? acc[curr] : null, lang);
+    return keys.reduce((acc, curr) => acc ? acc[curr] : null, lang);
   }
 }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74" height="74" viewBox="0 0 74 74">
+  <defs>
+    <filter id="teal_circle" x="0" y="0" width="74" height="74" filterUnits="userSpaceOnUse">
+      <feOffset dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.239"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Gruppe_335" data-name="Gruppe 335" transform="translate(-255 -502)">
+    <g id="Round_Btn_Default_Light" data-name="Round Btn Default Light" transform="translate(264 505)">
+      <g transform="matrix(1, 0, 0, 1, -9, -3)" filter="url(#teal_circle)">
+        <path id="teal_circle-2" data-name="teal circle" d="M28,0A28,28,0,1,1,0,28,28,28,0,0,1,28,0Z" transform="translate(9 3)" fill="#2962ff"/>
+      </g>
+      <g id="Gruppe_334" data-name="Gruppe 334" transform="translate(-2970 398)" opacity="0.12">
+        <path id="gradient_border_2" data-name="gradient border 2" d="M3431,959.5a27.5,27.5,0,1,1-27.5,27.5,27.5,27.5,0,0,1,27.5-27.5m0-.5a28,28,0,1,0,28,28,28,28,0,0,0-28-28Z" transform="translate(-433 -1357)" fill="#2962ff"/>
+        <path id="gradient_border_1" data-name="gradient border 1" d="M3431,959.5a27.5,27.5,0,1,1-27.5,27.5,27.5,27.5,0,0,1,27.5-27.5m0-.5a28,28,0,1,0,28,28,28,28,0,0,0-28-28Z" transform="translate(-433 -1357)" fill="#2962ff"/>
+      </g>
+    </g>
+    <path id="Pfad_82" data-name="Pfad 82" d="M4.687,31.376C11.131,37.24,15.3,42.518,22.188,54.75c14.984-37.823,35.5-47.534,32.9-49.208C49.824,2.009,24.214,31.617,21.117,35.523,17.393,33.551,4.687,26.658,4.687,31.376Z" transform="translate(264.313 499.75)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.125"/>
+  </g>
+</svg>

@@ -12,7 +12,7 @@ export class ShopService {
     private http: HttpClient,
   ) { }
 
-  private dataApiEndpoint = environment.apiUrl + '/shop';
+  private dataApiEndpoint = environment.apiUrl + '/shops';
 
   private mockShop: Shop = {
     id: 'dolor',

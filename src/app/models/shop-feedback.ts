@@ -15,7 +15,7 @@ export enum ProductAvailability {
 export interface ShopFeedback extends Entity {
     shop_id?: string;
     supplier_id?: string;
-
     amountOfCostumers?: AmountOfCostumers;
     productAvailability?: ProductAvailability;
+    timestamp?: Date;
 }

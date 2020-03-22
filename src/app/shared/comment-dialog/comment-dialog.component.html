@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{'general.comment' | translate}}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" color="none">
+    <textarea matInput [(ngModel)]="data"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end" style="margin-bottom: 8px">
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">Ok</button>
+</div>
+

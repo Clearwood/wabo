@@ -4,14 +4,7 @@
   width: 100%;
   background-color: $background-color-dark;
   padding: 24px;
-  .active-link {
-    color: $primary;
-  }
-  a {
-    color: $font-color-light;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: $font-size-xl;
-  };
+  height: 84px;
+  color: $font-color-light;
+  font-size: $font-size-l;
 }

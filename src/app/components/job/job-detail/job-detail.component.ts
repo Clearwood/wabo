@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { ShoppingItemService } from 'src/app/shared/services/shopping-item.service';
 import { Product } from 'src/app/models/product';
-import { ShoppingItem } from 'src/app/models/shoppingItem';
-import { HttpParams } from '@angular/common/http';
+import { ShoppingItem } from 'src/app/models/shopping-item';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { switchMap, map } from 'rxjs/operators';
-import { zip } from 'rxjs';
 import { Consumer } from 'src/app/models/consumer';
-import { Job } from 'src/app/models/job';
 import { ShoppingList } from 'src/app/models/shopping-list';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 import { ConsumerService } from 'src/app/shared/services/consumer.service';
@@ -41,9 +37,9 @@ export class JobDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
-      this.shoppingListID = param.id
+      this.shoppingListID = param.id;
       this.getShoppingListProducts(this.shoppingListID);
-    })
+    });
   }
 
   private getShoppingListProducts(shoppingListId: string) {
@@ -55,7 +51,7 @@ export class JobDetailComponent implements OnInit {
       });
     });
 
-    const params = new HttpParams().set("shoppingListId", shoppingListId);
+    const params = new HttpParams().set('shoppingListId', shoppingListId);
     this.shoppingItemService.getAllShoppingItem(params).pipe(
 
       switchMap((items: ShoppingListProduct[]) => {
@@ -75,69 +71,69 @@ export class JobDetailComponent implements OnInit {
     this.shoppingListProducts = [
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
       {
         product: {
-          name: "Test"
+          name: 'Test'
         }
       },
-    ]
+    ];
   }
 
   public onAcceptClick() {
-    console.log("Click on accept button.");
+    console.log('Click on accept button.');
   }
 
 }

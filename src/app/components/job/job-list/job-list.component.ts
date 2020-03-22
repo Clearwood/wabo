@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/shared/services/job.service';
-import { HttpParams } from '@angular/common/http';
 import { Consumer } from 'src/app/models/consumer';
 import { ShoppingList } from 'src/app/models/shopping-list';
-import { switchMap, map } from 'rxjs/operators';
 import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
-import { zip } from 'rxjs';
 import { HealthStatus } from 'src/app/models/user';
 import { Router } from '@angular/router';
 
@@ -62,7 +59,7 @@ export class JobListComponent implements OnInit {
         });*/
         this.jobs = [
           {
-            shoppingListId: "DieAntwortAufDieFrage",
+            shoppingListId: 'DieAntwortAufDieFrage',
             consumer: {
               user: {
                 firstName: 'Johnny',
@@ -88,10 +85,10 @@ export class JobListComponent implements OnInit {
               hasCooledProduct: false,
             }
           }
-        ]
+        ];
     }
 
-    public onDetailClick(event, job: Job) {
+    public onDetailClick(job: Job) {
       console.log('Is it working?');
       console.log(job.shoppingListId);
       this.router.navigate([`jobs/detail/${job.shoppingListId}`]);
