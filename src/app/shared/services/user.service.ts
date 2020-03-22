@@ -3,7 +3,6 @@ import {environment} from 'src/environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from 'src/app/models/user';
 import {BehaviorSubject, Observable, of} from 'rxjs';
-import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -22,6 +21,10 @@ export class UserService {
 
   public get currentUserValue(): User {
     return this.user.value;
+  }
+
+  public set currentUserValue(user: User) {
+    this.user.next(user);
   }
 
   public getUserById(userId: string): Observable<User> {

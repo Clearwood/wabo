@@ -4,6 +4,7 @@ import {UserService} from '../../shared/services/user.service';
 import {BehaviorSubject, of} from 'rxjs';
 import {switchMap, tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
+import {User} from '../../models/user';
 
 type Token = string;
 
@@ -23,14 +24,11 @@ export class AuthService {
 
   public login(email: string, password: string) {
     const body = {email, password};
-    return this.http.post(`${environment.apiUrl}/users/token`, body)
-      .pipe(
-        switchMap((token: {token}) => {
-          localStorage.setItem('token', token.token);
-          return this.userService.getUserById(token.token);
-        }),
-        tap(user => {
-          localStorage.setItem('user', JSON.stringify(user));
+    return this.http.post<{token: string, user: User}>(`${environment.apiUrl}/users/token`, body)
+      .pipe(tap((resp: {token: string, user: User}) => {
+          localStorage.setItem('user', JSON.stringify(resp.user));
+          localStorage.setItem('token', resp.token);
+          this.userService.currentUserValue = resp.user;
         })
       );
   }
