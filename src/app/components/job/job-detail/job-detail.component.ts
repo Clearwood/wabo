@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ShoppingItemService} from 'src/app/shared/services/shopping-item.service';
 import {Product} from 'src/app/models/product';
 import {ShoppingItem} from 'src/app/models/shopping-item';
@@ -36,6 +36,7 @@ export class JobDetailComponent implements OnInit {
     private productService: ProductService,
     private consumerService: ConsumerService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
   }
 
@@ -134,6 +135,10 @@ export class JobDetailComponent implements OnInit {
         }
       },
     ];
+  }
+
+  public onBackClick() {
+    this.router.navigate(['jobs']);
   }
 
   public onAcceptClick() {

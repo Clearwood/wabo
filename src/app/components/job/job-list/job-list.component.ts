@@ -93,8 +93,6 @@ export class JobListComponent implements OnInit {
   }
 
   public onDetailClick(job: Job) {
-    console.log('Is it working?');
-    console.log(job.shoppingList_id);
     this.router.navigate([`jobs/detail/${job.shoppingList_id}`]);
   }
 
