@@ -7,7 +7,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {HealthStatus, User} from '../../../models/user';
 import {UserService} from '../../../shared/services/user.service';
 import {switchMap} from 'rxjs/operators';
-import {MatCheckboxChange} from '@angular/material/checkbox';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 
 @Component({
@@ -29,8 +28,6 @@ export class SignUpComponent implements OnInit {
 
   public healthEnum = HealthStatus;
 
-  public translate = new Translate();
-
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
@@ -38,6 +35,8 @@ export class SignUpComponent implements OnInit {
               private snackbar: MatSnackBar,
               private userService: UserService) {
   }
+
+  public translate = new Translate();
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(this.startVector);

@@ -23,6 +23,7 @@ export const DE = {
     health_status: 'Gesundheitszustand',
     risk_group: 'Risikogruppe',
     logout: 'Ausloggen',
+    sign_in: 'Anmelden',
     form_error: {
       pw: 'Passwörter sollten mindestens 4 Zeichen lang sein',
       email: 'Bitte eine gültige Email eingebe'
@@ -34,6 +35,7 @@ export const DE = {
     supply: 'Liefern',
   },
   user: {
+    name: 'Name',
     first_name: 'Vorname',
     last_name: 'Nachname',
     street: 'Straße',
@@ -53,7 +55,6 @@ export const DE = {
     detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',
-    last_name: 'Nachname',
     shoppingBagsAmount: {
       1: 'sehr klein',
       2: 'klein',

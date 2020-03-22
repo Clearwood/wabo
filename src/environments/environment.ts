@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  lang: 'de',
-  apiUrl: 'http://api.callashopper.com/api',
+  apiUrl: 'http://wirvsvirus3app.eba-qmpyxjz7.eu-central-1.elasticbeanstalk.com/api',
 };
 
 /*

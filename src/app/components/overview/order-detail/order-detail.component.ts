@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Job, JobStatus} from '../../../models/job';
 import {JobService} from '../../../shared/services/job.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import {ShoppingItemService} from '../../../shared/services/shopping-item.service';
 import {SupplierService} from '../../../shared/services/supplier.service';
 import {ConsumerService} from '../../../shared/services/consumer.service';
@@ -13,8 +13,13 @@ import {ShoppingListService} from '../../../shared/services/shopping-list.servic
 import {ShoppingList} from '../../../models/shopping-list';
 import {ShoppingItem} from '../../../models/shopping-item';
 import {HttpParams} from '@angular/common/http';
-import {of} from 'rxjs';
+import {of, zip} from 'rxjs';
+import {ProductService} from '../../../shared/services/product.service';
+import {Product} from '../../../models/product';
 
+interface ExtendedShoppingItem extends ShoppingItem {
+  product?: Product;
+}
 
 @Component({
   selector: 'app-order-detail',
@@ -25,7 +30,7 @@ export class OrderDetailComponent implements OnInit {
 
   public job: Job;
   public shoppingList: ShoppingList;
-  public shoppingItems: ShoppingItem[];
+  public shoppingItems: ExtendedShoppingItem[];
   public consumer: Consumer;
   public supplier: Supplier;
   private updateFrequencyMinutes = 1;
@@ -37,7 +42,8 @@ export class OrderDetailComponent implements OnInit {
               private supplierService: SupplierService,
               private shoppingListService: ShoppingListService,
               private shoppingItemService: ShoppingItemService,
-              private userService: UserService) {
+              private userService: UserService,
+              private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -51,6 +57,15 @@ export class OrderDetailComponent implements OnInit {
         this.shoppingList = shoppingList;
         const params = new HttpParams().set('shoppingList_id', shoppingList.id);
         return this.shoppingItemService.getAllShoppingItem(params);
+      }),
+      switchMap(shoppingItems => {
+        const obs = shoppingItems.map((item: ExtendedShoppingItem) => {
+          return this.productService.getProductById(item.product_id).pipe(map(product => {
+            item.product = product;
+            return item;
+          }));
+        });
+        return zip(...obs);
       }),
       switchMap(shoppingItems => {
         this.shoppingItems = shoppingItems;

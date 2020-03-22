@@ -1,5 +1,4 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {environment} from '../../../environments/environment';
 import {DE} from '../../../assets/i18n/de';
 import {EN} from '../../../assets/i18n/en';
 
@@ -8,9 +7,13 @@ import {EN} from '../../../assets/i18n/en';
 })
 export class Translate implements PipeTransform {
 
+  constructor() {
+  }
+
   public transform(key: string): any {
-    const lang = environment.lang === 'de' ? DE : EN;
+    const lang = localStorage.getItem('language') === 'de-DE' ? DE : EN;
     const keys = key.split('.');
     return keys.reduce((acc, curr) => acc ? acc[curr] : null, lang);
   }
+
 }

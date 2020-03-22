@@ -8,6 +8,19 @@
         <img *ngIf="supplier" src="../../../../assets/icons/shopping/car_order.svg">
         <img *ngIf="consumer" src="../../../../assets/icons/shopping/shopping-cart-fill.svg">
       </div>
+      <div *ngFor="let item of shoppingItems">
+        <mat-chip-list *ngIf="item.product">
+          <mat-chip color="accent" selected>{{item?.product?.name}}</mat-chip>
+        </mat-chip-list>
+      <mat-form-field *ngIf="item?.product" style="width: 48px; font-size: smaller">
+        <mat-select [(ngModel)]="item.quantity">
+          <mat-option *ngFor="let n of [1,2,3,4,5,6]" [value]="n">{{n}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <p *ngIf="item.product">{{'product.quantity_unit.' + item?.product?.quantityUnit | translate}}</p>
+      </div>
+    </div>
     </div>
   </mat-card-header>
 </mat-card>

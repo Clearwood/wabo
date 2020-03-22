@@ -1,20 +1,24 @@
 <app-header></app-header>
 <div class="main center">
-  <div class="headline">Login</div>
+  <div class="headline">{{isGerman ? 'Einloggen' : 'Login'}}</div>
   <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" (ngSubmit)="onLogin()">
     <mat-form-field appearance="fill">
-      <mat-label>{{ 'login.email' | translate}}</mat-label>
+      <mat-label>Email</mat-label>
       <input matInput type="email" formControlName="email" required />
-      <mat-error>{{'login.form_error.email' | translate}}</mat-error>
+      <mat-error>{{isGerman ? 'Bitte eine gültige Email eingeben' : 'Please enter a valid email'}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>{{ 'login.password' | translate}}</mat-label>
+      <mat-label>{{isGerman ? 'Passwort' : 'Password'}}</mat-label>
       <input matInput type="password" formControlName="password" required />
-      <mat-error>{{'login.form_error.pw' | translate}}</mat-error>
+      <mat-error>{{isGerman ? 'Passwörter sollten mindestens 4 Zeichen lang sein' : 'Minimal Length for password: 4'}}</mat-error>
     </mat-form-field>
-    <div fxLayout="row" fxLayoutAlign="flex-end center">
-      <button mat-button color="primary" type="button" (click)="onSignUp()">Sign up</button>
-      <button mat-raised-button color="primary" type=submit>{{'login.login' | translate}}</button>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-slide-toggle (change)="onToggleLanguage($event)" [(ngModel)]="isGerman" [ngModelOptions]="{standalone :true}" >{{isGerman ? 'Deutsch' : 'German'}}</mat-slide-toggle>
+      <div fxLayout="row">
+        <button mat-button color="primary" type="button" (click)="onSignUp()">{{isGerman ? 'Anmelden' : 'Sign up'}}</button>
+        <button mat-raised-button color="primary" type=submit>{{isGerman ? 'Anmelden' : 'Login'}}</button>
+      </div>
     </div>
   </form>
 </div>
+

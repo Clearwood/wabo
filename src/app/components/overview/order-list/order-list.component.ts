@@ -47,7 +47,7 @@ export class OrderListComponent implements OnInit {
         return this.jobService.getAllJobs(params);
       }),
       switchMap((jobs: Job[]) => {
-        return jobs.map((job: ExtendedJob) => {
+        const obs = jobs.map((job: ExtendedJob) => {
           if (job.consumer_id) {
             this.consumerService.getConsumerById(job.consumer_id).pipe(map(consumer => {
               job.customer = consumer;
@@ -57,8 +57,10 @@ export class OrderListComponent implements OnInit {
             return of(job);
           }
         });
-      }));
-    jobObs.push(supplyJobs);
+        return zip(...obs);
+      })).subscribe((jobs) => {
+      this.jobsSupply = jobs;
+    });
     const orderedJob = this.consumerService.currentConsumerSubject.pipe(
       filter(consumer => !!consumer),
       switchMap(consumer => {
@@ -66,7 +68,7 @@ export class OrderListComponent implements OnInit {
         return this.jobService.getAllJobs(params);
       }),
       switchMap((jobs: Job[]) => {
-        return jobs.map((job: ExtendedJob) => {
+        const obs = jobs.map((job: ExtendedJob) => {
           if (job.supplier_id) {
             this.supplierService.getSupplierById(job.supplier_id).pipe(map(supplier => {
               job.customer = supplier;
@@ -76,9 +78,11 @@ export class OrderListComponent implements OnInit {
             return of(job);
           }
         });
+        return zip(...obs);
       })
-    );
-    jobObs.push(orderedJob);
+    ).subscribe(jobs => {
+      this.jobsConsume = jobs;
+    });
   }
 
   onDetailsClick(jobId: string) {
