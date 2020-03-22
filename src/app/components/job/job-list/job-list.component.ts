@@ -11,6 +11,7 @@ import {map, switchMap} from 'rxjs/operators';
 import {of, zip} from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { SupplierService } from 'src/app/shared/services/supplier.service';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 interface ViewJob extends Job {
   consumer?: Consumer;
@@ -27,6 +28,7 @@ export class JobListComponent implements OnInit {
   public jobs: ViewJob[];
 
   constructor(
+    private locationService: LocationService,
     private jobService: JobService,
     private consumerService: ConsumerService,
     private supplierService: SupplierService,
@@ -41,7 +43,8 @@ export class JobListComponent implements OnInit {
   }
 
   private getJobs() {
-    let searchParams: SearchParams = this.jobService.getSearchParams();
+    let searchParams = this.jobService.getSearchParams();
+
 
     if (!searchParams) {
       searchParams = {
@@ -51,36 +54,53 @@ export class JobListComponent implements OnInit {
       };
     }
 
-    const params = new HttpParams()
-      .set('longitude', '13.3372608')
-      .set('latitude', '52.5041028')
-      .set('searchRadius', searchParams.maxDistance.toString())
-      .set('shoppingBagsAmount', searchParams.maxWeight.toString())
-      .set('hasCooledProduct', (searchParams.canContainFrozen ? 1 : 0).toString());
+    this.locationService.getPosition().then(data => {
+      let searchParams: SearchParams = this.jobService.getSearchParams();
+
+      if (!searchParams) {
+        searchParams = {
+          maxDistance: 10,
+          maxWeight: 6,
+          canContainFrozen: true
+        };
+      }
+
+      const params = new HttpParams()
+        .set('longitude', data.lng.toString())
+        .set('latitude', data.lat.toString())
+        .set('searchRadius', searchParams.maxDistance.toString())
+        .set('shoppingBagsAmount', searchParams.maxWeight.toString())
+        .set('hasCooledProduct', (searchParams.canContainFrozen ? 1 : 0).toString());
       // TODO add supplier ID .set('supplier_id',...)
-    this.jobService.getAllJobs(params).pipe(
-      switchMap((jobs: ViewJob[]) => {
-        const jobsObs = jobs.map(job => {
-          return this.consumerService.getConsumerById(job.consumer_id).pipe(map(consumer => {
-            job.consumer = consumer;
-            return job;
-          }));
-        });
-        return jobsObs.length > 0 ? zip(...jobsObs) : of([]);
-      }),
-      switchMap((jobs: ViewJob[]) => {
-        const jobsObs = jobs.map(job => {
-          return this.shoppingListService.getShoppingListById(job.shoppingList_id).pipe(map(shoppingList => {
-            job.shoppingList = shoppingList;
-            return job;
-          }));
-        });
-        return jobsObs.length > 0 ? zip(...jobsObs) : of([]);
-      }),
-    ).subscribe(jobs => {
-      this.jobs = jobs;
-      console.log(this.jobs);
-    });
+      this.jobService.getAllJobs(params).pipe(
+        switchMap((jobs: ViewJob[]) => {
+          const jobsObs = jobs.map(job => {
+            return this.consumerService.getConsumerById(job.consumer_id).pipe(map(consumer => {
+              job.consumer = consumer;
+              return job;
+            }));
+          });
+          return jobsObs.length > 0 ? zip(...jobsObs) : of([]);
+        }),
+        switchMap((jobs: ViewJob[]) => {
+          const jobsObs = jobs.map(job => {
+            return this.shoppingListService.getShoppingListById(job.shoppingList_id).pipe(map(shoppingList => {
+              job.shoppingList = shoppingList;
+              return job;
+            }));
+          });
+          return jobsObs.length > 0 ? zip(...jobsObs) : of([]);
+        }),
+      ).subscribe(jobs => {
+        this.jobs = jobs;
+        console.log(this.jobs);
+      });
+
+    })
+      .catch(err => {
+        console.log('Something went wrong while getting the location!');
+        console.error(err);
+      });
   }
 
   public onDetailClick(job: Job) {
