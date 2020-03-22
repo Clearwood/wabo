@@ -4,6 +4,7 @@ import {AuthService} from '../../core/authentication/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Translate} from '../../shared/pipes/translate';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -36,9 +37,8 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
     const email = this.loginForm.get('email').value;
     this.authService.login(email, password).subscribe(
-      user => {
-
-        this.snackbar.open(`${this.translate.transform('login.login_success')} ${user.firstName} ${user.lastName}`);
+      (res: {token: string, user: User}) => {
+        this.snackbar.open(`${this.translate.transform('login.login_success')} ${res.user.firstName} ${res.user.lastName}`);
         this.router.navigate([[this.route.snapshot.queryParams.returnUrl || '/'], {replaceUrl: true}]);
       },
       () => {
