@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ShoppingItemService} from 'src/app/shared/services/shopping-item.service';
-import {Product} from 'src/app/models/product';
-import {ShoppingItem} from 'src/app/models/shopping-item';
-import {ProductService} from 'src/app/shared/services/product.service';
-import {Consumer} from 'src/app/models/consumer';
-import {ShoppingList} from 'src/app/models/shopping-list';
-import {ShoppingListService} from 'src/app/shared/services/shopping-list.service';
-import {ConsumerService} from 'src/app/shared/services/consumer.service';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ShoppingItem } from 'src/app/models/shopping-item';
+import { ShoppingList } from 'src/app/models/shopping-list';
+import { Consumer } from 'src/app/models/consumer';
+import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
+import { ShoppingItemService } from 'src/app/shared/services/shopping-item.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConsumerService } from 'src/app/shared/services/consumer.service';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
 import {zip} from 'rxjs';
@@ -16,13 +16,12 @@ interface ShoppingListProduct extends ShoppingItem {
   product?: Product;
 }
 
-
 @Component({
-  selector: 'app-job-detail',
-  templateUrl: './job-detail.component.html',
-  styleUrls: ['./job-detail.component.scss']
+  selector: 'app-job-accepted',
+  templateUrl: './job-accepted.component.html',
+  styleUrls: ['./job-accepted.component.scss']
 })
-export class JobDetailComponent implements OnInit {
+export class JobAcceptedComponent implements OnInit {
 
   private shoppingListID: string;
   public shoppingList: ShoppingList;
@@ -37,8 +36,7 @@ export class JobDetailComponent implements OnInit {
     private consumerService: ConsumerService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
@@ -72,14 +70,6 @@ export class JobDetailComponent implements OnInit {
     ).subscribe(shoppingListProducts => {
       this.shoppingListProducts = shoppingListProducts;
     });
-  }
-
-  public onBackClick() {
-    this.router.navigate(['jobs']);
-  }
-
-  public onAcceptClick() {
-    console.log('Click on accept button.');
   }
 
 }

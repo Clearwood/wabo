@@ -10,6 +10,7 @@ export const DE = {
     home: 'Start',
     profile: 'Profil',
     'shopping-list': 'Bestellung',
+    accepted: "Akzeptiert",
     details: 'Details',
     jobs: 'Bestellungen'
   },

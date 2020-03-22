@@ -42,6 +42,7 @@ import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.c
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FooterComponent } from './shared/footer/footer.component';
+import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     Translate,
     JobListComponent,
     JobDetailComponent,
+    JobAcceptedComponent,
     ShoppingListComponent,
     ShoppingListDialogComponent,
     CommentDialogComponent,
@@ -68,6 +70,7 @@ import { FooterComponent } from './shared/footer/footer.component';
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
+      {path: 'jobs/accepted/:id', component: JobAcceptedComponent, canActivate: [AuthGuard]},
       {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},

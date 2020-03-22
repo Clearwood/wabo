@@ -1,0 +1,7 @@
+<app-header componentName="accepted"></app-header>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{job?.consumer?.user?.firstName}} {{job?.consumer?.user?.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{'health.' + job?.consumer?.user?.healthStatus | translate}}</mat-card-subtitle>
+      </mat-card-header>
+</mat-card>
