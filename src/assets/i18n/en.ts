@@ -22,6 +22,7 @@ export const EN = {
   },
   job_list: {
     accept: "Accept",
+    back: "Back",
     detail: 'Details',
     shoppingBags: 'Size of purchase',
     hasCooledProduct: 'Contains cooled products',

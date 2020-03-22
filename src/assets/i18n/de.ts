@@ -44,6 +44,7 @@ export const DE = {
   },
   job_list: {
     accept: 'Akzeptieren',
+    back: "Zurück",
     detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',

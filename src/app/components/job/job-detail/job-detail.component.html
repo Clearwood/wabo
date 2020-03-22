@@ -28,7 +28,8 @@
         </div>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="end">
+      <div fxLayout="row" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px" fxLayoutAlign="end center">
+        <button mat-raised-button color="warn" (click)="onBackClick()">{{'job_list.back' | translate}}</button>
         <button mat-raised-button color="warn" (click)="onAcceptClick()">{{'job_list.accept' | translate}}</button>
       </div>
     </mat-card-content>
