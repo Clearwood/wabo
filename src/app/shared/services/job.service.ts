@@ -51,5 +51,5 @@ export class JobService {
 
   public getSearchParams(): SearchParams {
     return this.searchParams;
-  } 
+  }
 }

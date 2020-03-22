@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {HeaderComponent} from './shared/header/header.component';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './components/login/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Translate} from './shared/pipes/translate';
 import {ProfileComponent} from './components/profile/profile.component';
@@ -50,6 +50,7 @@ import { OrderDetailComponent } from './components/overview/order-detail/order-d
 import {SupplierService} from './shared/services/supplier.service';
 import { JobExtraInfoComponent } from './components/job/job-extra-info/job-extra-info.component';
 import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
+import { SignUpComponent } from './components/login/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
     OrderDetailComponent,
     JobExtraInfoComponent,
     DistanceLablePipe,
+    SignUpComponent,
   ],
   imports: [
     // core
@@ -88,6 +90,7 @@ import { DistanceLablePipe } from './shared/pipes/distance-lable.pipe';
       {path: 'overview/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
       {path: 'overview/' , redirectTo: 'overview/list'},
       {path: 'login', component: LoginComponent},
+      {path: 'sign-up', component: SignUpComponent},
       {path: '**', redirectTo: 'home'},
     ]),
     FormsModule,

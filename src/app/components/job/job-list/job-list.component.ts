@@ -5,7 +5,6 @@ import {Consumer} from 'src/app/models/consumer';
 import {ShoppingList} from 'src/app/models/shopping-list';
 import {ConsumerService} from 'src/app/shared/services/consumer.service';
 import {ShoppingListService} from 'src/app/shared/services/shopping-list.service';
-import {HealthStatus} from 'src/app/models/user';
 import {Router} from '@angular/router';
 import {HttpParams} from '@angular/common/http';
 import {map, switchMap} from 'rxjs/operators';
@@ -44,7 +43,7 @@ export class JobListComponent implements OnInit {
   private getJobs() {
     let searchParams: SearchParams = this.jobService.getSearchParams();
 
-    if(!searchParams) {
+    if (!searchParams) {
       searchParams = {
         maxDistance: 10,
         maxWeight: 6,
@@ -90,14 +89,14 @@ export class JobListComponent implements OnInit {
 
   // TODO: Remove consumer and shopping list from job obejct
   public onAcceptClick(job: Job) {
-    const params = new HttpParams().set("user_id", this.userService.currentUserValue.id);
+    const params = new HttpParams().set('user_id', this.userService.currentUserValue.id);
     this.supplierService.getAllSuppliers(params).subscribe(suppliers => {
-      if(suppliers[0]) {
+      if (suppliers[0]) {
         job.status = JobStatus.IN_PROGRESS;
         job.supplier_id = suppliers[0].id;
         job.acceptedJobTime = new Date();
-        this.jobService.updateJob(job).subscribe(job =>{
-          this.router.navigate([`jobs/accepted/${job.id}`]);
+        this.jobService.updateJob(job).subscribe(updatedJob => {
+          this.router.navigate([`jobs/accepted/${updatedJob.id}`]);
         });
       }
     });

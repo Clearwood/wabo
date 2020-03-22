@@ -57,7 +57,7 @@ export class JobDetailComponent implements OnInit {
       switchMap((job: Job) => {
         this.job = job;
         this.shoppingListID = job.shoppingList_id;
-        return this.shoppingListService.getShoppingListById(this.shoppingListID)
+        return this.shoppingListService.getShoppingListById(this.shoppingListID);
       }),
       switchMap(shoppingList => {
         this.shoppingList = shoppingList;

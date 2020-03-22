@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class JobExtraInfoComponent implements OnInit {
 
-  public distanceInKm: number = 4;
-  public shoppingBagsAmount: number = 3;
-  public hasFrostedProducts: boolean = false;
+  public distanceInKm = 4;
+  public shoppingBagsAmount = 3;
+  public hasFrostedProducts = false;
 
   constructor(
     private jobService: JobService,
@@ -22,7 +22,7 @@ export class JobExtraInfoComponent implements OnInit {
   }
 
   formatLabel(value: number | null) {
-    return value ? value + ' km': 0 + ' km';
+    return value ? value + ' km' : 0 + ' km';
   }
 
   public onSearchClick() {
@@ -30,7 +30,7 @@ export class JobExtraInfoComponent implements OnInit {
       maxDistance: this.distanceInKm,
       maxWeight: this.shoppingBagsAmount,
       canContainFrozen: this.hasFrostedProducts,
-    }
+    };
 
     this.jobService.setSearchParams(searchParams);
 
