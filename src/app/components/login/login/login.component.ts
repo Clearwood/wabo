@@ -4,7 +4,8 @@ import {AuthService} from '../../../core/authentication/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Translate} from '../../../shared/pipes/translate';
-import {HealthStatus, User} from '../../../models/user';
+import {User} from '../../../models/user';
+import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,6 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(4)]]
   };
 
-  public translate = new Translate();
-
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
@@ -29,8 +28,12 @@ export class LoginComponent implements OnInit {
               private snackbar: MatSnackBar) {
   }
 
+  public translate = new Translate();
+  public isGerman = false;
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(this.startVector);
+    this.isGerman = localStorage.getItem('language') === 'de-DE';
   }
 
   onLogin() {
@@ -52,5 +55,10 @@ export class LoginComponent implements OnInit {
 
   onSignUp() {
     this.router.navigate(['sign-up']);
+  }
+
+  onToggleLanguage(event: MatSlideToggleChange) {
+    const lang = event.checked ? 'de-DE' : 'en-EN';
+    localStorage.setItem('language', lang);
   }
 }

@@ -43,7 +43,7 @@ export class JobListComponent implements OnInit {
   }
 
   private getJobs() {
-    let searchParams = this.jobService.getSearchParams();
+    let searchParams: SearchParams  = this.jobService.getSearchParams();
 
 
     if (!searchParams) {
@@ -55,7 +55,7 @@ export class JobListComponent implements OnInit {
     }
 
     this.locationService.getPosition().then(data => {
-      let searchParams: SearchParams = this.jobService.getSearchParams();
+      searchParams = this.jobService.getSearchParams();
 
       if (!searchParams) {
         searchParams = {
