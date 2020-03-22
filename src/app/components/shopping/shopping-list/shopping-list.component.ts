@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ShoppingItem} from '../../../models/shopping-item';
 import {Product} from '../../../models/product';
-import {BehaviorSubject, zip} from 'rxjs';
+import {BehaviorSubject, of, zip} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {ShoppingListService} from '../../../shared/services/shopping-list.service';
 import {ShoppingItemService} from '../../../shared/services/shopping-item.service';
@@ -10,9 +10,14 @@ import {HttpParams} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {CommentDialogComponent} from '../../../shared/comment-dialog/comment-dialog.component';
 import {ShoppingListDialogComponent} from '../shopping-list-dialog/shopping-list-dialog.component';
-import {switchMap} from 'rxjs/operators';
+import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {ShoppingList} from '../../../models/shopping-list';
 import {UserService} from '../../../shared/services/user.service';
+import {ConsumerService} from '../../../shared/services/consumer.service';
+import {Consumer} from '../../../models/consumer';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {JobService} from '../../../shared/services/job.service';
 
 interface ExtendedShoppingItem extends ShoppingItem {
   product?: Product;
@@ -35,7 +40,11 @@ export class ShoppingListComponent implements OnInit {
               private shoppingItemService: ShoppingItemService,
               private productService: ProductService,
               private dialog: MatDialog,
-              private userService: UserService) {
+              private userService: UserService,
+              private consumerService: ConsumerService,
+              private snackbar: MatSnackBar,
+              private router: Router,
+              private jobService: JobService) {
   }
 
   ngOnInit(): void {
@@ -64,6 +73,7 @@ export class ShoppingListComponent implements OnInit {
     this.isRequiringValidation = false;
     if (this.items.length < 5) {
       this.addListItem();
+      this.isRequiringValidation = true;
     }
   }
 
@@ -94,25 +104,49 @@ export class ShoppingListComponent implements OnInit {
     if (!this.allItemsAreValid()) {
       return;
     }
+    this.isRequiringValidation = false;
     const dialogRef = this.dialog.open(ShoppingListDialogComponent, {width: '500px'});
+    let shoppingList: ShoppingList;
+    const userId = this.userService.currentUserValue.id;
     dialogRef.afterClosed().pipe(
-      switchMap((shoppingList: ShoppingList) => {
-        shoppingList.consumer_id = this.userService.currentUserValue.id;
-        shoppingList.shopType = '';
+      filter(list => list),
+      switchMap((list: ShoppingList) => {
+        shoppingList = list;
+        const params = new HttpParams().set('user_id', userId);
+        return this.consumerService.getAllConsumers(params);
+      }),
+      switchMap(consumers => {
+        return consumers.length ? of(consumers[0]) : this.consumerService.createConsumer({user_id: userId});
+      }),
+      tap(consumer => this.consumerService.currentConsumer = consumer),
+      switchMap(consumers => {
+        shoppingList.consumer_id = consumers.id;
         return this.shoppingListService.createShoppingList(shoppingList);
       }),
-      switchMap(shoppingList => {
+      switchMap(createdList => {
+        shoppingList = createdList;
+        return this.jobService.createJob({shoppingList_id: shoppingList.id});
+      }),
+      switchMap(() => {
         const createItemsObs = this.items.map(item => {
           item.product_id = item.product.id;
           item.shoppingList_id = shoppingList.id;
           return this.shoppingItemService.createShoppingItem(item);
         });
         return zip(...createItemsObs);
-      })).subscribe();
+      }),
+    ).subscribe(() => {
+        this.snackbar.open('Bestellung wurd erfolgreich versendet');
+        this.router.navigate(['home']);
+      },
+      err => {
+        this.snackbar.open(err.message);
+      }
+    );
   }
 
   public allItemsAreValid() {
-    return this.items.length >= this.minAmount && this.items.reduce((acc, curr) => acc && !!curr.product, true) ;
+    return this.items.length >= this.minAmount && this.items.reduce((acc, curr) => acc && !!curr.product, true);
   }
 }
 

@@ -40,7 +40,7 @@
       <mat-icon class="font-size-xl">add</mat-icon>
     </div>
   </mat-card>
-  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
+  <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="16px" fxLayoutGap.lt-sm="8px">
     <p *ngIf="isRequiringValidation && !allItemsAreValid()"
        style="color: red">{{ 'shopping.list.error_amount' | translate}}</p>
     <button mat-raised-button color="primary" (click)="onSaveClick()">{{'general.confirm' | translate}}</button>

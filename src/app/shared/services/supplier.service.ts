@@ -3,12 +3,24 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Supplier } from 'src/app/models/supplier';
 import { Observable } from 'rxjs';
+import {UserService} from './user.service';
 
 @Injectable()
 export class SupplierService {
 
+  private supplier: Supplier;
+
   constructor(private http: HttpClient,
+              private userService: UserService
   ) {
+  }
+
+  public get currentSupplier(): Supplier {
+    return this.supplier;
+  }
+
+  public set currentSupplier(supplier: Supplier) {
+    this.supplier = supplier;
   }
 
   private dataApiEndpoint = environment.apiUrl + '/suppliers';

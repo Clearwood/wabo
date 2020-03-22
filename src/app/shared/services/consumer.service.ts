@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Consumer } from 'src/app/models/consumer';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {environment} from 'src/environments/environment';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Consumer} from 'src/app/models/consumer';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class ConsumerService {
+
+  private consumer: Consumer;
 
   constructor(private http: HttpClient,
   ) {
@@ -13,11 +15,19 @@ export class ConsumerService {
 
   private dataApiEndpoint = environment.apiUrl + '/consumers';
 
+  public get currentConsumer(): Consumer {
+    return this.consumer;
+  }
+
+  public set currentConsumer(consumer: Consumer) {
+    this.consumer = consumer;
+  }
+
   public getConsumerById(consumerId: string): Observable<Consumer> {
     return this.http.get<Consumer>(this.dataApiEndpoint + '/' + consumerId);
   }
 
-  public createConsumer(consumer: Consumer): Observable<Consumer> {
+  public createConsumer(consumer: {user_id: string}): Observable<Consumer> {
     return this.http.post<Consumer>(this.dataApiEndpoint, consumer);
   }
 

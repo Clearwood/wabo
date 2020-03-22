@@ -44,7 +44,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './shared/footer/footer.component';
 import { JobAcceptedComponent } from './components/job/job-accepted/job-accepted.component';
-import { SupplierService } from './shared/services/supplier.service';
+import { OrderListComponent } from './components/overview/order-list/order-list.component';
+import { OrderDetailComponent } from './components/overview/order-detail/order-detail.component';
+import {SupplierService} from './shared/services/supplier.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { SupplierService } from './shared/services/supplier.service';
     ShoppingListDialogComponent,
     CommentDialogComponent,
     FooterComponent,
+    OrderListComponent,
+    OrderDetailComponent,
   ],
   imports: [
     // core
@@ -74,6 +78,9 @@ import { SupplierService } from './shared/services/supplier.service';
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
       {path: 'jobs/accepted/:id', component: JobAcceptedComponent, canActivate: [AuthGuard]},
       {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
+      {path: 'overview/list', component: OrderListComponent, canActivate: [AuthGuard]},
+      {path: 'overview/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
+      {path: 'overview/' , redirectTo: 'overview/list'},
       {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
@@ -111,6 +118,7 @@ import { SupplierService } from './shared/services/supplier.service';
     SupplierService,
     AuthService,
     AuthGuard,
+    SupplierService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

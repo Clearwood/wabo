@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {ConsumerService} from '../../shared/services/consumer.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   onViewOverview() {
+    this.router.navigate(['overview/list']);
   }
 
   onOrderClick() {

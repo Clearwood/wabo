@@ -32,7 +32,6 @@ export class JobDetailComponent implements OnInit {
   private shoppingListID: string;
   public shoppingList: ShoppingList;
   public shoppingListProducts: ShoppingListProduct[];
-
   public consumer: Consumer;
 
   constructor(
@@ -70,7 +69,6 @@ export class JobDetailComponent implements OnInit {
       })).subscribe(consumer => {
       this.consumer = consumer;
     });
-
     const params = new HttpParams().set('shoppingListId', shoppingListId);
     this.shoppingItemService.getAllShoppingItem(params).pipe(
       switchMap((items: ShoppingListProduct[]) => {
