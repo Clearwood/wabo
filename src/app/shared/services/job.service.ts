@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Job } from 'src/app/models/job';
+import {Job, JobStatus} from 'src/app/models/job';
 import { Observable} from 'rxjs';
 
 @Injectable()
@@ -31,5 +31,9 @@ export class JobService {
 
   public getAllJobs(params?: HttpParams): Observable<Job[]> {
     return this.http.get<Job[]>(this.dataApiEndpoint, {params});
+  }
+
+  public getJobStatus(jobId): Observable<JobStatus> {
+    return this.http.get<JobStatus>(`${this.dataApiEndpoint}/${jobId}/status`);
   }
 }

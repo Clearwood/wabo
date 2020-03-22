@@ -42,6 +42,9 @@ import { CommentDialogComponent } from './shared/comment-dialog/comment-dialog.c
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FooterComponent } from './shared/footer/footer.component';
+import { OrderListComponent } from './components/overview/order-list/order-list.component';
+import { OrderDetailComponent } from './components/overview/order-detail/order-detail.component';
+import {SupplierService} from './shared/services/supplier.service';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     ShoppingListDialogComponent,
     CommentDialogComponent,
     FooterComponent,
+    OrderListComponent,
+    OrderDetailComponent,
   ],
   imports: [
     // core
@@ -69,6 +74,9 @@ import { FooterComponent } from './shared/footer/footer.component';
       {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]},
       {path: 'jobs/detail/:id', component: JobDetailComponent, canActivate: [AuthGuard]},
       {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
+      {path: 'overview/list', component: OrderListComponent, canActivate: [AuthGuard]},
+      {path: 'overview/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
+      {path: 'overview/' , redirectTo: 'overview/list'},
       {path: 'login', component: LoginComponent},
       {path: '**', redirectTo: 'home'},
     ]),
@@ -104,6 +112,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     ShopFeedbackService,
     AuthService,
     AuthGuard,
+    SupplierService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

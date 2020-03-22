@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../shared/services/user.service';
-import {BehaviorSubject, of} from 'rxjs';
-import {switchMap, tap} from 'rxjs/operators';
+import {BehaviorSubject} from 'rxjs';
+import {tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {User} from '../../models/user';
 
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private userService: UserService) {
-    this.authToken = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('token')));
+    this.authToken = new BehaviorSubject<Token>(localStorage.getItem('token'));
   }
 
   public get tokenValue(): Token {

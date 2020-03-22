@@ -4,6 +4,7 @@ export enum JobStatus {
   PENDING = 'pending',
   IN_PROGRESS = 'inProgress',
   DONE = 'done',
+  CANCELLED = 'cancelled',
 }
 
 export interface Job extends Entity {

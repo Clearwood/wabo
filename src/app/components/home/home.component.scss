@@ -8,7 +8,7 @@
   display: flex;
   justify-content: end;
   @media (max-width:  960px){
-    padding: 16px 32px;
+    padding: 32px 32px;
   }
 }
 
@@ -26,8 +26,8 @@ img {
   width: 120px;
   height: 120px;
   @media (max-width:  960px){
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -36,14 +36,4 @@ img {
   font-weight: bold;
   padding: 16px;
   text-transform: uppercase;
-}
-
-.background-primary {
-  background-color: $primary;
-}
-.background-warn {
-  background-color: $warn;
-}
-.background-accent {
-  background-color: $accent;
 }

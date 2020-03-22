@@ -27,7 +27,6 @@ export class JobDetailComponent implements OnInit {
   private shoppingListID: string;
   public shoppingList: ShoppingList;
   public shoppingListProducts: ShoppingListProduct[];
-
   public consumer: Consumer;
 
   constructor(
@@ -56,12 +55,11 @@ export class JobDetailComponent implements OnInit {
       })).subscribe(consumer => {
       this.consumer = consumer;
     });
-
     const params = new HttpParams().set('shoppingListId', shoppingListId);
     this.shoppingItemService.getAllShoppingItem(params).pipe(
       switchMap((items: ShoppingListProduct[]) => {
         const shoppingOps = items.map(item => {
-          return this.productService.getProductById(item.productId).pipe(map(product => {
+          return this.productService.getProductById(item.product_id).pipe(map(product => {
             item.product = product;
             return product;
           }));

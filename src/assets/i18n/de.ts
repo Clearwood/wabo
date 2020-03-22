@@ -44,11 +44,18 @@ export const DE = {
   },
   job_list: {
     accept: 'Akzeptieren',
-    back: "Zurück",
+    back: 'Zurück',
     detail: 'Details',
     shoppingBags: 'Größe des Einkaufs',
     hasCooledProduct: 'Besitzt gekühlte Produkte',
-    last_name: 'Nachname'
+    last_name: 'Nachname',
+    shoppingBagsAmount: {
+      1: 'sehr klein',
+      2: 'klein',
+      3: 'mittel',
+      4: 'groß',
+      5: 'sehr groß',
+    },
   },
   shopping: {
     list: {
